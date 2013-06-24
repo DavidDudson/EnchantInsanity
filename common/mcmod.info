@@ -1,0 +1,20 @@
+[
+{
+  "modid": "EI",
+  "name": "Enchant Insanity",
+  "description": "For me, insanity is super sanity. The normal is psychotic. Normal means lack of imagination, lack of creativity. - JEAN DEBUFFET",
+  "version": "PreAlpha",
+  "url": "Unreleased",
+  "updateUrl": "",
+  "authorList": [
+    "BigDaveNz"
+  ],
+  "credits": "Notch, and the forge team, for giving me this programming playground",
+  "logoFile": "/mods/EI/Textures/logo/logo.png",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
