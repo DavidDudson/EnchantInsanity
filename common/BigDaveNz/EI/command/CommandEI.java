@@ -1,12 +1,11 @@
 package BigDaveNz.EI.command;
 
-import ibxm.Player;
 import BigDaveNz.EI.lib.Commands;
+import BigDaveNz.EI.lib.Skills;
 import BigDaveNz.EI.skill.Skill;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.player.*;
 
 public class CommandEI extends CommandBase{
     
@@ -44,40 +43,50 @@ public class CommandEI extends CommandBase{
             throw new WrongUsageException(Commands.COMMAND_EI_USAGE, new Object[0]);
         
     }
+    
     public void processXPCommand(ICommandSender commandSender, String[] args){
 
-            if (args.length > 0) {
+          if (args.length > 0){
                 String subCommand = args[0];
-
-                switch(args[0]){
                     
-                    case "unbreaking":
-                        EntityPlayer.addChatMessage("Current" + args[0] + Skill.Unbreaking.getCurrentXp());
-                        
+                if (subCommand.equalsIgnoreCase(Skills.SKILL_UNBREAKING)){
+                    String message  = "Current: " + Skills.SKILL_UNBREAKING + " XP: " + Skill.Unbreaking.getCurrentXp();
+                    commandSender.sendChatToPlayer(message);
+                }    
+                else
+                    throw new WrongUsageException(Commands.COMMAND_XP_USAGE, new Object[0]);
+          }
+          else
+              throw new WrongUsageException(Commands.COMMAND_XP_USAGE, new Object[0]);
+    }
+                       
     public void processLevelCommand(ICommandSender commandSender, String[] args){
-
-             if (args.length > 0) {
-                String subCommand = args[0];
-
-                switch(args[0]){
-                                    
-                    case "unbreaking":
-                         player.addChatMessage("Current" + args[0] + Skill.Unbreaking.getCurrentLevel());   
-                            
-                }  
+        if (args.length > 0){
+            String subCommand = args[0];
+            
+            if (subCommand.equalsIgnoreCase(Skills.SKILL_UNBREAKING)){
+                String message  = "Current: " + Skills.SKILL_UNBREAKING + " Level: " + Skill.Unbreaking.getCurrentLevel();
+                commandSender.sendChatToPlayer(message);
+            }    
+            else
+                throw new WrongUsageException(Commands.COMMAND_XP_USAGE, new Object[0]);
+        }
+        else
+            throw new WrongUsageException(Commands.COMMAND_LEVEL_USAGE, new Object[0]);                    
+        }  
+    
     public void processLeaderboardCommand(ICommandSender commandSender, String[] args){
-
-               if (args.length > 0) {
-                  String subCommand = args[0];
-
-                  switch(args[0]){
-                                           
-                     case "unbreaking":
-                          player.addChatMessage("Current" + args[0] + Skill.Unbreaking.getCurrentLeaderboard());   
-                  }
-               }
-               else{
-                 throw new WrongUsageException(Commands.COMMAND_LEADERBOARD_USAGE, new Object[0]);
-        }   
-
+        if (args.length > 0){
+            String subCommand = args[0];
+            
+        if (subCommand.equalsIgnoreCase(Skills.SKILL_UNBREAKING)){
+            String message  = "Current: " + Skills.SKILL_UNBREAKING + " Level: " + Skill.Unbreaking.getCurrentLeaderboard();
+            commandSender.sendChatToPlayer(message);
+        }    
+        else
+            throw new WrongUsageException(Commands.COMMAND_XP_USAGE, new Object[0]);
+    }
+    else
+        throw new WrongUsageException(Commands.COMMAND_XP_USAGE, new Object[0]);
+    }
 }
