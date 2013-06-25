@@ -1,5 +1,8 @@
 package BigDaveNz.EI.command;
 
+import java.awt.List;
+import java.util.Arrays;
+
 import BigDaveNz.EI.lib.Commands;
 import BigDaveNz.EI.lib.Skills;
 import BigDaveNz.EI.skill.Skill;
@@ -48,9 +51,11 @@ public class CommandEI extends CommandBase{
 
           if (args.length > 0){
                 String subCommand = args[0];
-                    
-                if (subCommand.equalsIgnoreCase(Skills.SKILL_UNBREAKING)){
-                    String message  = "Current: " + Skills.SKILL_UNBREAKING + " XP: " + Skill.Unbreaking.getCurrentXp();
+                
+                final java.util.List<String> CURRENT_SKILL_LIST = Arrays.asList(Skills.SKILL_LIST);
+                
+                if (CURRENT_SKILL_LIST.contains(subCommand)){
+                    String message  = "Current: " + subCommand + " XP: " + Skill.Unbreaking.getCurrentXp();
                     commandSender.sendChatToPlayer(message);
                 }    
                 else

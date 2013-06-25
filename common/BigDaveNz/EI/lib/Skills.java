@@ -24,6 +24,7 @@ public class Skills {
     public final static String SKILL_HORTICULTURE = "Horticulture";
     public final static String SKILL_SPEED = "Fleet of Foot";
     public final static String SKILL_JUMP = "Leap";
+    public final static String SKILL_SWIMMING = "Smimming";
     
             
     
@@ -48,5 +49,11 @@ public class Skills {
     public final static int XP_PER_DIAMOND_ORE = 20;
     public final static int XP_PER_EMERALD_ORE = 30;
     public final static int XP_PER_QUARTZ_ORE = 6;
+    
+    //Skill List
+    public final static String[] SKILL_LIST = {SKILL_UNBREAKING,SKILL_EFFICIENCY,SKILL_EXCAVATION,SKILL_MINING,SKILL_LUCK,SKILL_WOODCUTTING,SKILL_HORTICULTURE,SKILL_SPEED,SKILL_JUMP,SKILL_SWIMMING};
+    
+    
+    
 }
 
