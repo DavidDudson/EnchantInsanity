@@ -18,6 +18,7 @@ import BigDaveNz.EI.lib.*;
 import BigDaveNz.EI.skill.Skill;
 import BigDaveNz.EI.command.CommandHandler;
 import BigDaveNz.EI.creativetab.CreativeTabEI;
+import BigDaveNz.EI.enchant.Enchant;
 import BigDaveNz.EI.item.ModItems;
 
 /**
@@ -49,6 +50,8 @@ public class EnchantInsanity {
         ModItems.init();
         
         Skill.init();
+        
+        Enchant.init();
     }
     
     @Init

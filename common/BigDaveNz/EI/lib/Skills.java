@@ -11,7 +11,7 @@ public class Skills {
     */
     
     //General constants
-    public final static int MAX_SKILL_LEVEL = 100;
+    
     public final static int MIN_SKILL_LEVEL = 0;
     
     //Player Skill Names
@@ -58,6 +58,7 @@ public class Skills {
     public final static String SKILL_BANE_BAT = "Bane of Bat";
     public final static String SKILL_BANE_BLAZE = "Bane of Blaze";
     public final static String SKILL_BANE_ENDERMAN = "Bane of Enderman";
+    public final static String SKILL_BANE_GHAST = "Bane of Ghasts";
     
     //Entity Skill Names - Friendly
     
@@ -66,10 +67,11 @@ public class Skills {
     public final static String SKILL_BANE_COW = "Bane of Cow";
     public final static String SKILL_BANE_SQUID = "Bane of Squid";
     public final static String SKILL_BANE_CHICKEN = "Bane of Chicken";
-    public final static String SKILL_BANE_WOlf = "Bane of Wolf";
+    public final static String SKILL_BANE_WOLF = "Bane of Wolf";
     public final static String SKILL_BANE_OCELOT = "Bane of Ocelot";
-    public final static String SKILL_BANE_PEOPLE = "Bane of Testificate";
+    public final static String SKILL_BANE_NPC = "Bane of Testificate";
     public final static String SKILL_BANE_GOLEM = "Bane of Golem";
+    public final static String SKILL_BANE_HORSE = "Bane of Horse";
     
     //Player Skill Modifiers
     public final static double SKILL_UNBREAKING_MODIFIER = 1;
@@ -82,35 +84,62 @@ public class Skills {
     public final static double SKILL_SPEED_MODIFIER = 2;
     public final static double SKILL_JUMP_MODIFIER = 0.2;
     public final static double SKILL_SWIMMING_MODIFIER = 0.02;
+    public final static double SKILL_BANE_MODIFIER = 0.1;
     
     //Tool Skill Modifiers
     
-    public final static double SKILL_PICKAXE_MODFIER = 1;
-    public final static double SKILL_SHOVEL_MODFIER  = 1;
-    public final static double SKILL_AXE_MODFIER  = 0.4;
-    public final static double SKILL_HOE_MODFIER  = 0.02;
-    public final static double SKILL_SHEARS_MODFIER  = 0.02;
+    public final static double SKILL_PICKAXE_MODIFIER = 1;
+    public final static double SKILL_SHOVEL_MODIFIER  = 1;
+    public final static double SKILL_AXE_MODIFIER  = 0.4;
+    public final static double SKILL_HOE_MODIFIER  = 0.02;
+    public final static double SKILL_SHEARS_MODIFIER  = 0.02;
     
     //Weapon Skill Modifiers
     
-    public final static double SKILL_SWORD_MODFIER = 1;
-    public final static double SKILL_BATTLEAXE_MODFIER = 1;
-    public final static double SKILL_BOW_MODFIER = 1;
-    public final static double SKILL_FIST_MODFIER = 1;
+    public final static double SKILL_SWORD_MODIFIER = 1;
+    public final static double SKILL_BATTLEAXE_MODIFIER = 1;
+    public final static double SKILL_BOW_MODIFIER = 1;
+    public final static double SKILL_FIST_MODIFIER = 1;
     
     //Armour Skill Modifiers
     
-    //Entity Hostile Skill Modifiers
+    public final static double SKILL_UNARMOURED_MODIFIER = 1;
+    public final static double SKILL_LIGHTARMOUR_MODIFIER = 1;
+    public final static double SKILL_HEAVYARMOUR_MODIFIER = 1;
     
     //Entity Hostile Skill Modifiers
+    
+    public final static double SKILL_BANE_SKELETON_MODIFIER = 1;
+    public final static double SKILL_BANE_ZOMBIE_MODIFIER = 1;
+    public final static double SKILL_BANE_SLIME_MODIFIER = 1;
+    public final static double SKILL_BANE_BLAZE_MODIFIER = 1;
+    public final static double SKILL_BANE_SPIDER_MODIFIER = 1;
+    public final static double SKILL_BANE_WITHER_MODIFIER = 1;
+    public final static double SKILL_BANE_BAT_MODIFIER = 1;
+    public final static double SKILL_BANE_ENDERMAN_MODIFIER = 1;
+    public final static double SKILL_BANE_GHAST_MODIFIER = 1;
+    
+    
+    //Entity Hostile Skill Modifiers
+    
+    public final static double SKILL_BANE_SHEEP_MODIFIER = 1;
+    public final static double SKILL_BANE_PIG_MODIFIER = 1;
+    public final static double SKILL_BANE_COW_MODIFIER = 1;
+    public final static double SKILL_BANE_WOLF_MODIFIER = 1;
+    public final static double SKILL_BANE_SQUID_MODIFIER = 1;
+    public final static double SKILL_BANE_HORSE_MODIFIER = 1;
+    public final static double SKILL_BANE_CHICKEN_MODIFIER = 1;
+    public final static double SKILL_BANE_OCELOT_MODIFIER = 1;
+    public final static double SKILL_BANE_GOLEM_MODIFIER = 1;
+    public final static double SKILL_BANE_NPC_MODIFIER = 1;
     
     //Skill Lists
     public final static String[] PLAYER_SKILL_LIST = {SKILL_BANE,SKILL_UNBREAKING,SKILL_EFFICIENCY,SKILL_EXCAVATION,SKILL_MINING,SKILL_LUCK,SKILL_WOODCUTTING,SKILL_HORTICULTURE,SKILL_SPEED,SKILL_JUMP,SKILL_SWIMMING};
     public final static String[] TOOL_SKILL_LIST = {SKILL_PICKAXE,SKILL_SHOVEL,SKILL_AXE,SKILL_HOE,SKILL_SHEARS};
     public final static String[] WEAPON_SKILL_LIST = {SKILL_SWORD,SKILL_BOW,SKILL_AXE,SKILL_FIST};
     public final static String[] ARMOUR_SKILL_LIST = {SKILL_UNARMOURED,SKILL_LIGHTARMOUR,SKILL_HEAVYARMOUR};
-    public final static String[] HOSTILE_BANE_SKILL_LIST = {SKILL_BANE_BLAZE,SKILL_BANE_SKELETON,SKILL_BANE_ZOMBIE,SKILL_BANE_SPIDER,SKILL_BANE_WITHER,SKILL_BANE_SLIME,SKILL_BANE_BAT};
-    public final static String[] FRIENDLY_BANE_SKILL_LIST = {};
+    public final static String[] HOSTILE_BANE_SKILL_LIST = {SKILL_BANE_GHAST,SKILL_BANE_BLAZE,SKILL_BANE_SKELETON,SKILL_BANE_ZOMBIE,SKILL_BANE_SPIDER,SKILL_BANE_WITHER,SKILL_BANE_SLIME,SKILL_BANE_BAT};
+    public final static String[] FRIENDLY_BANE_SKILL_LIST = {SKILL_BANE_CHICKEN,SKILL_BANE_SHEEP,SKILL_BANE_PIG,SKILL_BANE_COW,SKILL_BANE_WOLF,SKILL_BANE_SQUID,SKILL_BANE_OCELOT,SKILL_BANE_NPC,SKILL_BANE_GOLEM, SKILL_BANE_HORSE};
     
     
     //Block Related XP gain

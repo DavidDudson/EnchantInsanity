@@ -55,7 +55,7 @@ public class CommandEI extends CommandBase{
                 final java.util.List<String> CURRENT_SKILL_LIST = Arrays.asList(Skills.PLAYER_SKILL_LIST);
                 
                 if (CURRENT_SKILL_LIST.contains(subCommand)){
-                    String message  = "Current: " + subCommand + " XP: " + Skill.Unbreaking.getCurrentXp();
+                    String message  = "Current: " + Skills.SKILL_UNBREAKING + " XP: " + Skill.Unbreaking.getCurrentXp();
                     commandSender.sendChatToPlayer(message);
                 }    
                 else
