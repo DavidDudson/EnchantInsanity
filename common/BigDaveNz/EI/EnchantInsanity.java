@@ -15,6 +15,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import BigDaveNz.EI.core.proxy.CommonProxy;
 import BigDaveNz.EI.lib.*;
+import BigDaveNz.EI.skill.Skill;
 import BigDaveNz.EI.command.CommandHandler;
 import BigDaveNz.EI.creativetab.CreativeTabEI;
 import BigDaveNz.EI.item.ModItems;
@@ -46,6 +47,8 @@ public class EnchantInsanity {
     @PreInit
     public void preInit(FMLPreInitializationEvent event) { 
         ModItems.init();
+        
+        Skill.init();
     }
     
     @Init

@@ -52,7 +52,7 @@ public class CommandEI extends CommandBase{
           if (args.length > 0){
                 String subCommand = args[0];
                 
-                final java.util.List<String> CURRENT_SKILL_LIST = Arrays.asList(Skills.SKILL_LIST);
+                final java.util.List<String> CURRENT_SKILL_LIST = Arrays.asList(Skills.PLAYER_SKILL_LIST);
                 
                 if (CURRENT_SKILL_LIST.contains(subCommand)){
                     String message  = "Current: " + subCommand + " XP: " + Skill.Unbreaking.getCurrentXp();

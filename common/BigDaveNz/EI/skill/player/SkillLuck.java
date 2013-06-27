@@ -1,4 +1,6 @@
-package BigDaveNz.EI.skill;
+package BigDaveNz.EI.skill.player;
+
+import BigDaveNz.EI.skill.Skill;
 
 public class SkillLuck extends Skill{
 
