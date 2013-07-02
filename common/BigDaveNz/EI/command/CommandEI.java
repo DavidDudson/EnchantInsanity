@@ -2,10 +2,13 @@ package BigDaveNz.EI.command;
 
 import java.awt.List;
 import java.util.Arrays;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import BigDaveNz.EI.lib.Commands;
 import BigDaveNz.EI.lib.Skills;
 import BigDaveNz.EI.skill.Skill;
+import BigDaveNz.EI.core.util.EILogger;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
@@ -31,7 +34,13 @@ public class CommandEI extends CommandBase{
             System.arraycopy(args, 1, args, 0, args.length - 1);
 
             if (commandName.equalsIgnoreCase(Commands.COMMAND_PAR2_XP)) {
-                processXPCommand(commandSender,args);
+                try {
+                    processXPCommand(commandSender,args);
+                } catch (NoSuchMethodException | SecurityException
+                        | IllegalAccessException | IllegalArgumentException
+                        | InvocationTargetException e) {
+                    EILogger.severe("Command Failed");
+                }
             }
             else if (commandName.equalsIgnoreCase(Commands.COMMAND_PAR2_LEVEL)) {
                 processLevelCommand(commandSender,args);
@@ -47,22 +56,15 @@ public class CommandEI extends CommandBase{
         
     }
     
-    public void processXPCommand(ICommandSender commandSender, String[] args){
+    public void processXPCommand(ICommandSender commandSender, String[] args) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 
           if (args.length > 0){
-                String subCommand = args[0];
-                
-                final java.util.List<String> CURRENT_SKILL_LIST = Arrays.asList(Skills.PLAYER_SKILL_LIST);
-                
-                if (CURRENT_SKILL_LIST.contains(subCommand)){
-                    String message  = "Current: " + Skills.SKILL_UNBREAKING + " XP: " + Skill.Unbreaking.getCurrentXp();
-                    commandSender.sendChatToPlayer(message);
-                }    
-                else
-                    throw new WrongUsageException(Commands.COMMAND_XP_USAGE, new Object[0]);
-          }
-          else
-              throw new WrongUsageException(Commands.COMMAND_XP_USAGE, new Object[0]);
+              Skill skill = Skill.getSkillFromName(args[0]);
+              Method method = skill.getClass().getMethod("getCurrentXP", Skill.class);
+              int xp = (int) method.invoke(skill);
+              String message  = "Current: " + args[0] + " Level: " + xp;
+              commandSender.sendChatToPlayer(message); 
+              }
     }
                        
     public void processLevelCommand(ICommandSender commandSender, String[] args){
@@ -94,4 +96,6 @@ public class CommandEI extends CommandBase{
     else
         throw new WrongUsageException(Commands.COMMAND_XP_USAGE, new Object[0]);
     }
+    
+
 }

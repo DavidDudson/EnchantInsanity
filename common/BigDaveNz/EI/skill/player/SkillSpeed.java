@@ -4,8 +4,8 @@ import BigDaveNz.EI.skill.Skill;
 
 public class SkillSpeed extends Skill {
 
-    public SkillSpeed(String skillName, int SkillID, double modifier) {
-        super(skillName, SkillID, modifier);
+    public SkillSpeed(String skillName, double modifier) {
+        super(skillName, modifier);
     }
 
 }

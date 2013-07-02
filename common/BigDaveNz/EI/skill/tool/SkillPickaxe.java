@@ -4,8 +4,8 @@ import BigDaveNz.EI.skill.Skill;
 
 public class SkillPickaxe extends Skill {
 
-    public SkillPickaxe(String skillName, int SkillID, double modifier) {
-        super(skillName, SkillID, modifier);
+    public SkillPickaxe(String skillName, double modifier) {
+        super(skillName, modifier);
     }
 
 }

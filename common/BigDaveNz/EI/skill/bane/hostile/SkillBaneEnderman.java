@@ -4,8 +4,8 @@ import BigDaveNz.EI.skill.Skill;
 
 public class SkillBaneEnderman extends Skill {
 
-    public SkillBaneEnderman(String skillName, int SkillID, double modifier) {
-        super(skillName, SkillID, modifier);
+    public SkillBaneEnderman(String skillName, double modifier) {
+        super(skillName, modifier);
     }
 
 }

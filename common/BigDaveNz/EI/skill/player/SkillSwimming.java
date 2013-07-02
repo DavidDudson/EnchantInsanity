@@ -4,8 +4,8 @@ import BigDaveNz.EI.skill.Skill;
 
 public class SkillSwimming extends Skill {
 
-    public SkillSwimming(String skillName, int SkillID, double modifier) {
-        super(skillName, SkillID, modifier);
+    public SkillSwimming(String skillName, double modifier) {
+        super(skillName, modifier);
     }
 
 }

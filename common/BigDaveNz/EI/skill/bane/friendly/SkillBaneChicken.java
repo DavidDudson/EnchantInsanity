@@ -8,8 +8,8 @@ import BigDaveNz.EI.skill.Skill;
  */
 public class SkillBaneChicken extends Skill {
 
-    public SkillBaneChicken(String skillName, int SkillID, double modifier) {
-        super(skillName, SkillID, modifier);
+    public SkillBaneChicken(String skillName, double modifier) {
+        super(skillName, modifier);
     }
 
 }

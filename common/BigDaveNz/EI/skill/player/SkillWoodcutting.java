@@ -5,8 +5,8 @@ import BigDaveNz.EI.skill.Skill;
 
 public class SkillWoodcutting extends Skill {
 
-    public SkillWoodcutting(String skillName, int SkillID, double modifier) {
-        super(skillName, SkillID, modifier);
+    public SkillWoodcutting(String skillName, double modifier) {
+        super(skillName, modifier);
     }
 
 }

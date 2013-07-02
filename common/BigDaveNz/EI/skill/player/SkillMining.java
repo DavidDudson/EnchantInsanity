@@ -4,8 +4,8 @@ import BigDaveNz.EI.skill.Skill;
 
 public class SkillMining extends Skill{
 
-    public SkillMining(String skillName, int SkillID, double modifier) {
-        super(skillName, SkillID, modifier);
+    public SkillMining(String skillName, double modifier) {
+        super(skillName, modifier);
     }
 
 }

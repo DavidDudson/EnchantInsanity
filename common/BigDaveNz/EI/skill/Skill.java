@@ -1,9 +1,12 @@
 package BigDaveNz.EI.skill;
 
 import java.util.HashMap;
+import java.util.Map;
 
+import net.minecraft.command.WrongUsageException;
 import net.minecraft.nbt.NBTTagCompound;
 
+import BigDaveNz.EI.lib.Commands;
 import BigDaveNz.EI.lib.Skills;
 import BigDaveNz.EI.skill.armour.SkillHeavyArmour;
 import BigDaveNz.EI.skill.armour.SkillLightArmour;
@@ -48,7 +51,7 @@ import BigDaveNz.EI.skill.weapon.SkillFist;
 import BigDaveNz.EI.skill.weapon.SkillSword;
 
 public class Skill {
-    
+
     private int currentLevel;
     private int currentXP;
     private float Modifier;
@@ -56,8 +59,9 @@ public class Skill {
     private int minLevel;
     private int maxLevel;
     private String name;
-    
-
+    private int ID;
+    private int nextID;
+    public static Map<String, Skill> skillsMap = new HashMap<String, Skill>();
     
     public static Skill Unbreaking;
     public static Skill Efficiency;
@@ -74,79 +78,79 @@ public class Skill {
     @SuppressWarnings("unused")
     public static void init() {
         
-        Skill Unbreaking = (new SkillUnbreaking(Skills.SKILL_UNBREAKING,1,Skills.SKILL_UNBREAKING_MODIFIER));
-        Skill Efficiency = (new SkillEfficiency(Skills.SKILL_EFFICIENCY,2,Skills.SKILL_EFFICIENCY_MODIFIER));
-        Skill Excavation = (new SkillExcavation(Skills.SKILL_EXCAVATION,3,Skills.SKILL_EXCAVATION_MODIFIER));
-        Skill Mining = (new SkillMining(Skills.SKILL_MINING,4,Skills.SKILL_MINING_MODIFIER));
-        Skill Luck = (new SkillLuck(Skills.SKILL_LUCK,5,Skills.SKILL_LUCK_MODIFIER));
-        Skill Woodcutting = (new SkillWoodcutting(Skills.SKILL_WOODCUTTING,6,Skills.SKILL_WOODCUTTING_MODIFIER));
-        Skill Horticulture = (new SkillHorticulture(Skills.SKILL_HORTICULTURE,7,Skills.SKILL_HORTICULTURE_MODIFIER));
-        Skill Speed = (new SkillSpeed(Skills.SKILL_SPEED,8,Skills.SKILL_SPEED_MODIFIER));
-        Skill Jump = (new SkillJump(Skills.SKILL_JUMP,9,Skills.SKILL_JUMP_MODIFIER));
-        Skill Swimming = (new SkillSwimming(Skills.SKILL_SWIMMING,10,Skills.SKILL_SWIMMING_MODIFIER));
-        Skill Bane = (new SkillBane(Skills.SKILL_BANE,10,Skills.SKILL_BANE_MODIFIER));
+        Skill Unbreaking = (new SkillUnbreaking(Skills.SKILL_UNBREAKING,Skills.SKILL_UNBREAKING_MODIFIER));
+        Skill Efficiency = (new SkillEfficiency(Skills.SKILL_EFFICIENCY,Skills.SKILL_EFFICIENCY_MODIFIER));
+        Skill Excavation = (new SkillExcavation(Skills.SKILL_EXCAVATION,Skills.SKILL_EXCAVATION_MODIFIER));
+        Skill Mining = (new SkillMining(Skills.SKILL_MINING,Skills.SKILL_MINING_MODIFIER));
+        Skill Luck = (new SkillLuck(Skills.SKILL_LUCK,Skills.SKILL_LUCK_MODIFIER));
+        Skill Woodcutting = (new SkillWoodcutting(Skills.SKILL_WOODCUTTING,Skills.SKILL_WOODCUTTING_MODIFIER));
+        Skill Horticulture = (new SkillHorticulture(Skills.SKILL_HORTICULTURE,Skills.SKILL_HORTICULTURE_MODIFIER));
+        Skill Speed = (new SkillSpeed(Skills.SKILL_SPEED,Skills.SKILL_SPEED_MODIFIER));
+        Skill Jump = (new SkillJump(Skills.SKILL_JUMP,Skills.SKILL_JUMP_MODIFIER));
+        Skill Swimming = (new SkillSwimming(Skills.SKILL_SWIMMING,Skills.SKILL_SWIMMING_MODIFIER));
+        Skill Bane = (new SkillBane(Skills.SKILL_BANE,Skills.SKILL_BANE_MODIFIER));
         
-        Skill Pickaxe = (new SkillPickaxe(Skills.SKILL_PICKAXE,11,Skills.SKILL_PICKAXE_MODIFIER));
-        Skill Shovel = (new SkillShovel(Skills.SKILL_SHOVEL,12,Skills.SKILL_SHOVEL_MODIFIER));
-        Skill Axe = (new SkillAxe(Skills.SKILL_AXE,13,Skills.SKILL_AXE_MODIFIER));
-        Skill Hoe = (new SkillHoe(Skills.SKILL_HOE,14,Skills.SKILL_HOE_MODIFIER));
-        Skill Shears = (new SkillShears(Skills.SKILL_SHEARS,15,Skills.SKILL_SHEARS_MODIFIER));
+        Skill Pickaxe = (new SkillPickaxe(Skills.SKILL_PICKAXE,Skills.SKILL_PICKAXE_MODIFIER));
+        Skill Shovel = (new SkillShovel(Skills.SKILL_SHOVEL,Skills.SKILL_SHOVEL_MODIFIER));
+        Skill Axe = (new SkillAxe(Skills.SKILL_AXE,Skills.SKILL_AXE_MODIFIER));
+        Skill Hoe = (new SkillHoe(Skills.SKILL_HOE,Skills.SKILL_HOE_MODIFIER));
+        Skill Shears = (new SkillShears(Skills.SKILL_SHEARS,Skills.SKILL_SHEARS_MODIFIER));
         
-        Skill Sword = (new SkillSword(Skills.SKILL_SWORD,16,Skills.SKILL_SWORD_MODIFIER));
-        Skill BattleAxe = (new SkillBattleAxe(Skills.SKILL_BATTLEAXE,17,Skills.SKILL_BATTLEAXE_MODIFIER));
-        Skill Bow = (new SkillBow(Skills.SKILL_BOW,18,Skills.SKILL_BOW_MODIFIER));
-        Skill Fist = (new SkillFist(Skills.SKILL_FIST,19,Skills.SKILL_FIST_MODIFIER));
+        Skill Sword = (new SkillSword(Skills.SKILL_SWORD,Skills.SKILL_SWORD_MODIFIER));
+        Skill BattleAxe = (new SkillBattleAxe(Skills.SKILL_BATTLEAXE,Skills.SKILL_BATTLEAXE_MODIFIER));
+        Skill Bow = (new SkillBow(Skills.SKILL_BOW,Skills.SKILL_BOW_MODIFIER));
+        Skill Fist = (new SkillFist(Skills.SKILL_FIST,Skills.SKILL_FIST_MODIFIER));
         
-        Skill Unarmoured = (new SkillUnarmoured(Skills.SKILL_UNARMOURED,20,Skills.SKILL_UNARMOURED_MODIFIER));
-        Skill LightArmour = (new SkillLightArmour(Skills.SKILL_LIGHTARMOUR,21,Skills.SKILL_LIGHTARMOUR_MODIFIER));
-        Skill HeavyArmour = (new SkillHeavyArmour(Skills.SKILL_HEAVYARMOUR,22,Skills.SKILL_HEAVYARMOUR_MODIFIER));
+        Skill Unarmoured = (new SkillUnarmoured(Skills.SKILL_UNARMOURED,Skills.SKILL_UNARMOURED_MODIFIER));
+        Skill LightArmour = (new SkillLightArmour(Skills.SKILL_LIGHTARMOUR,Skills.SKILL_LIGHTARMOUR_MODIFIER));
+        Skill HeavyArmour = (new SkillHeavyArmour(Skills.SKILL_HEAVYARMOUR,Skills.SKILL_HEAVYARMOUR_MODIFIER));
         
-        Skill BaneSkeleton = (new SkillBaneSkeleton(Skills.SKILL_BANE_SKELETON,23,Skills.SKILL_BANE_SKELETON_MODIFIER));
-        Skill BaneZombie = (new SkillBaneZombie(Skills.SKILL_BANE_ZOMBIE,24,Skills.SKILL_BANE_ZOMBIE_MODIFIER));
-        Skill BaneGhast = (new SkillBaneGhast(Skills.SKILL_BANE_GHAST,25,Skills.SKILL_BANE_GHAST_MODIFIER));
-        Skill BaneSpider = (new SkillBaneSpider(Skills.SKILL_BANE_SPIDER,26,Skills.SKILL_BANE_SPIDER_MODIFIER));
-        Skill BaneSlime = (new SkillBaneSlime(Skills.SKILL_BANE_SLIME,27,Skills.SKILL_BANE_SLIME_MODIFIER));
-        Skill BaneBlaze = (new SkillBaneBlaze(Skills.SKILL_BANE_BLAZE,28,Skills.SKILL_BANE_BLAZE_MODIFIER));        
-        Skill BaneBat = (new SkillBaneBat(Skills.SKILL_BANE_BAT,29,Skills.SKILL_BANE_BAT_MODIFIER));
-        Skill BaneWither = (new SkillBaneWither(Skills.SKILL_BANE_WITHER,30,Skills.SKILL_BANE_WITHER_MODIFIER));
-        Skill BaneEnderman = (new SkillBaneEnderman(Skills.SKILL_BANE_ENDERMAN,31,Skills.SKILL_BANE_ENDERMAN_MODIFIER));
+        Skill BaneSkeleton = (new SkillBaneSkeleton(Skills.SKILL_BANE_SKELETON,Skills.SKILL_BANE_SKELETON_MODIFIER));
+        Skill BaneZombie = (new SkillBaneZombie(Skills.SKILL_BANE_ZOMBIE,Skills.SKILL_BANE_ZOMBIE_MODIFIER));
+        Skill BaneGhast = (new SkillBaneGhast(Skills.SKILL_BANE_GHAST,Skills.SKILL_BANE_GHAST_MODIFIER));
+        Skill BaneSpider = (new SkillBaneSpider(Skills.SKILL_BANE_SPIDER,Skills.SKILL_BANE_SPIDER_MODIFIER));
+        Skill BaneSlime = (new SkillBaneSlime(Skills.SKILL_BANE_SLIME,Skills.SKILL_BANE_SLIME_MODIFIER));
+        Skill BaneBlaze = (new SkillBaneBlaze(Skills.SKILL_BANE_BLAZE,Skills.SKILL_BANE_BLAZE_MODIFIER));        
+        Skill BaneBat = (new SkillBaneBat(Skills.SKILL_BANE_BAT,Skills.SKILL_BANE_BAT_MODIFIER));
+        Skill BaneWither = (new SkillBaneWither(Skills.SKILL_BANE_WITHER,Skills.SKILL_BANE_WITHER_MODIFIER));
+        Skill BaneEnderman = (new SkillBaneEnderman(Skills.SKILL_BANE_ENDERMAN,Skills.SKILL_BANE_ENDERMAN_MODIFIER));
         
-        Skill BaneSheep = (new SkillBaneSheep(Skills.SKILL_BANE_SHEEP,32,Skills.SKILL_BANE_SHEEP_MODIFIER));
-        Skill BanePig = (new SkillBanePig(Skills.SKILL_BANE_PIG,33,Skills.SKILL_BANE_PIG_MODIFIER));
-        Skill BaneCow = (new SkillBaneCow(Skills.SKILL_BANE_COW,34,Skills.SKILL_BANE_COW_MODIFIER));
-        Skill BaneOcelot = (new SkillBaneOcelot(Skills.SKILL_BANE_OCELOT,35,Skills.SKILL_BANE_OCELOT_MODIFIER));
-        Skill BaneWolf = (new SkillBaneWolf(Skills.SKILL_BANE_WOLF,36,Skills.SKILL_BANE_WOLF_MODIFIER));
-        Skill BaneChicken = (new SkillBaneChicken(Skills.SKILL_BANE_CHICKEN,37,Skills.SKILL_BANE_CHICKEN_MODIFIER));
-        Skill BaneGolem = (new SkillBaneGolem(Skills.SKILL_BANE_GOLEM,38,Skills.SKILL_BANE_GOLEM_MODIFIER));
-        Skill BaneNPC = (new SkillBaneNPC(Skills.SKILL_BANE_NPC,39,Skills.SKILL_BANE_NPC_MODIFIER));
-        Skill BaneSquid = (new SkillBaneSquid(Skills.SKILL_BANE_SQUID,40,Skills.SKILL_BANE_SQUID_MODIFIER));
+        Skill BaneSheep = (new SkillBaneSheep(Skills.SKILL_BANE_SHEEP,Skills.SKILL_BANE_SHEEP_MODIFIER));
+        Skill BanePig = (new SkillBanePig(Skills.SKILL_BANE_PIG,Skills.SKILL_BANE_PIG_MODIFIER));
+        Skill BaneCow = (new SkillBaneCow(Skills.SKILL_BANE_COW,Skills.SKILL_BANE_COW_MODIFIER));
+        Skill BaneOcelot = (new SkillBaneOcelot(Skills.SKILL_BANE_OCELOT,Skills.SKILL_BANE_OCELOT_MODIFIER));
+        Skill BaneWolf = (new SkillBaneWolf(Skills.SKILL_BANE_WOLF,Skills.SKILL_BANE_WOLF_MODIFIER));
+        Skill BaneChicken = (new SkillBaneChicken(Skills.SKILL_BANE_CHICKEN,Skills.SKILL_BANE_CHICKEN_MODIFIER));
+        Skill BaneGolem = (new SkillBaneGolem(Skills.SKILL_BANE_GOLEM,Skills.SKILL_BANE_GOLEM_MODIFIER));
+        Skill BaneNPC = (new SkillBaneNPC(Skills.SKILL_BANE_NPC,Skills.SKILL_BANE_NPC_MODIFIER));
+        Skill BaneSquid = (new SkillBaneSquid(Skills.SKILL_BANE_SQUID,Skills.SKILL_BANE_SQUID_MODIFIER));
         
         
     }
 
     //skill constructor
-    public Skill(String skillName, int SkillID, double modifier){
-        this.name  = skillName;
+    public Skill(String skillName, double modifier){
+        this.setName(skillName);
         this.minLevel = Skills.MIN_SKILL_LEVEL;
         this.Modifier = 1f;
         this.currentLevel = (int)calculateLevel();
         this.currentXP = 1;
         this.leaderboard = getCurrentLeaderboard();
-        
+        this.ID = getNextID();
     }
     public double calculateLevel(){
         return Math.pow(currentXP * Modifier,3);
     }
-    
+
+    public int getCurrentXP() {
+        return currentXP;
+    }
     public int getCurrentLevel(){
         return currentLevel;
     }
-        
-    public int getCurrentXp(){
-        return currentXP;
-    }
     
-    public HashMap<String, Integer> getCurrentLeaderboard(){
+    public HashMap<String, Integer> getCurrentLeaderboard()
+    {
         leaderboard.put("BigDaveNz", getCurrentLevel());
         return leaderboard;
     }
@@ -166,4 +170,43 @@ public class Skill {
         Unbreaking.currentXP = nbttagcompound1.getInteger("Unbreaking_XP");
         }
     }
+    
+    public int getNextID(){
+        nextID += 1;
+        return nextID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void mapSkills() {
+        skillsMap.put(Speed.getName(), Speed);
+        skillsMap.put(Unbreaking.getName(), Unbreaking);
+        skillsMap.put(Efficiency.getName(), Efficiency);
+        skillsMap.put(Excavation.getName(), Excavation);
+        skillsMap.put(Mining.getName(), Mining);
+        skillsMap.put(Luck.getName(), Luck);
+    }
+
+    public static Skill getSkillFromName(String Name)
+    {
+        Skill skill = Skill.skillsMap.get(Name);
+        {
+            if(skill == null)
+            {
+                throw new WrongUsageException("Invalid ", new Object[0]);
+            }
+            else
+            {
+                return skill;
+            }
+
+        }
+    }
+
 }

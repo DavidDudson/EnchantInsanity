@@ -4,8 +4,8 @@ import BigDaveNz.EI.skill.Skill;
 
 public class SkillEfficiency extends Skill {
 
-    public SkillEfficiency(String skillName, int SkillID, double modifier) {
-        super(skillName, SkillID, modifier);
+    public SkillEfficiency(String skillName, double modifier) {
+        super(skillName, modifier);
     }
 
 }

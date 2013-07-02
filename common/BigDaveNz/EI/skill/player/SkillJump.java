@@ -4,8 +4,8 @@ import BigDaveNz.EI.skill.Skill;
 
 public class SkillJump extends Skill {
 
-    public SkillJump(String skillName, int SkillID, double modifier) {
-        super(skillName, SkillID, modifier);
+    public SkillJump(String skillName, double modifier) {
+        super(skillName, modifier);
     }
 
 }

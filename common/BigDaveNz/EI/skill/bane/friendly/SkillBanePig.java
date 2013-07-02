@@ -9,8 +9,8 @@ import BigDaveNz.EI.skill.Skill;
  */
 public class SkillBanePig extends Skill {
         
-    public SkillBanePig(String skillName, int SkillID, double modifier) {
-        super(skillName, SkillID, modifier);
+    public SkillBanePig(String skillName, double modifier) {
+        super(skillName, modifier);
     }
 
 }

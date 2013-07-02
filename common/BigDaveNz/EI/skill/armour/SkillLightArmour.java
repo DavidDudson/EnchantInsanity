@@ -4,8 +4,8 @@ import BigDaveNz.EI.skill.Skill;
 
 public class SkillLightArmour extends Skill {
 
-    public SkillLightArmour(String skillName, int SkillID, double modifier) {
-        super(skillName, SkillID, modifier);
+    public SkillLightArmour(String skillName, double modifier) {
+        super(skillName, modifier);
     }
 
 }

@@ -4,8 +4,8 @@ import BigDaveNz.EI.skill.Skill;
 
 public class SkillBow extends Skill {
 
-    public SkillBow(String skillName, int SkillID, double modifier) {
-        super(skillName, SkillID, modifier);
+    public SkillBow(String skillName, double modifier) {
+        super(skillName, modifier);
     }
 
 }

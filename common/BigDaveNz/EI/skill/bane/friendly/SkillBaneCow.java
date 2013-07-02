@@ -4,8 +4,8 @@ import BigDaveNz.EI.skill.Skill;
 
 public class SkillBaneCow extends Skill {
 
-    public SkillBaneCow(String skillName, int SkillID, double modifier) {
-        super(skillName, SkillID, modifier);
+    public SkillBaneCow(String skillName, double modifier) {
+        super(skillName, modifier);
     }
 
 }

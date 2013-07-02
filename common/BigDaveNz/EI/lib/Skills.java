@@ -26,6 +26,9 @@ public class Skills {
     public final static String SKILL_JUMP = "Leap";
     public final static String SKILL_SWIMMING = "Smimming";
     public final static String SKILL_BANE = "Bane";
+    public final static String SKILL_TIME = "Time";   
+    public final static String SKILL_CRAFTING = "Crafting";  
+    public final static String SKILL_SMELTING = "Smelting";  
     
     //Tool Skill Names
     
@@ -85,6 +88,9 @@ public class Skills {
     public final static double SKILL_JUMP_MODIFIER = 0.2;
     public final static double SKILL_SWIMMING_MODIFIER = 0.02;
     public final static double SKILL_BANE_MODIFIER = 0.1;
+    public final static double SKILL_TIME_MODIFIER = 0.6;   
+    public final static double SKILL_CRAFTING_MODIFIER = .1;  
+    public final static double SKILL_SMELTING_MODIFIER = .1;  
     
     //Tool Skill Modifiers
     
@@ -134,7 +140,7 @@ public class Skills {
     public final static double SKILL_BANE_NPC_MODIFIER = 1;
     
     //Skill Lists
-    public final static String[] PLAYER_SKILL_LIST = {SKILL_BANE,SKILL_UNBREAKING,SKILL_EFFICIENCY,SKILL_EXCAVATION,SKILL_MINING,SKILL_LUCK,SKILL_WOODCUTTING,SKILL_HORTICULTURE,SKILL_SPEED,SKILL_JUMP,SKILL_SWIMMING};
+    public final static String[] PLAYER_SKILL_LIST = {SKILL_TIME,SKILL_CRAFTING,SKILL_SMELTING,SKILL_BANE,SKILL_UNBREAKING,SKILL_EFFICIENCY,SKILL_EXCAVATION,SKILL_MINING,SKILL_LUCK,SKILL_WOODCUTTING,SKILL_HORTICULTURE,SKILL_SPEED,SKILL_JUMP,SKILL_SWIMMING};
     public final static String[] TOOL_SKILL_LIST = {SKILL_PICKAXE,SKILL_SHOVEL,SKILL_AXE,SKILL_HOE,SKILL_SHEARS};
     public final static String[] WEAPON_SKILL_LIST = {SKILL_SWORD,SKILL_BOW,SKILL_AXE,SKILL_FIST};
     public final static String[] ARMOUR_SKILL_LIST = {SKILL_UNARMOURED,SKILL_LIGHTARMOUR,SKILL_HEAVYARMOUR};

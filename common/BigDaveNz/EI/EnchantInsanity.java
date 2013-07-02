@@ -14,6 +14,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import BigDaveNz.EI.core.proxy.CommonProxy;
+import BigDaveNz.EI.core.util.EILogger;
 import BigDaveNz.EI.lib.*;
 import BigDaveNz.EI.skill.Skill;
 import BigDaveNz.EI.command.CommandHandler;
@@ -52,6 +53,8 @@ public class EnchantInsanity {
         Skill.init();
         
         Enchant.init();
+        
+        EILogger.init();
     }
     
     @Init
