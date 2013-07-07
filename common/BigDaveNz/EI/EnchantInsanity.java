@@ -23,45 +23,46 @@ import BigDaveNz.EI.enchant.Enchant;
 import BigDaveNz.EI.item.ModItems;
 
 /**
-Enchant Insantiy
-
-Created by BigDaveNz
-
-Main Mod Class
-*/
+ * Enchant Insantiy
+ * 
+ * Created by BigDaveNz
+ * 
+ * Main Mod Class
+ */
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 public class EnchantInsanity {
-    
+
     @Instance(Reference.MOD_ID)
     public static EnchantInsanity instance;
-    
-    public static CreativeTabs tabsEI = new CreativeTabEI(CreativeTabs.getNextID(), Reference.MOD_ID);
-    
+
+    public static CreativeTabs tabsEI = new CreativeTabEI(
+            CreativeTabs.getNextID(), Reference.MOD_ID);
+
     @ServerStarting
     public void serverStarting(FMLServerStartingEvent event) {
         CommandHandler.initCommands(event);
     }
-    
+
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static CommonProxy proxy;
-    
+
     @PreInit
-    public void preInit(FMLPreInitializationEvent event) { 
+    public void preInit(FMLPreInitializationEvent event) {
         ModItems.init();
-        
+
         Skill.init();
-        
+
         Enchant.init();
-        
+
         EILogger.init();
     }
-    
+
     @Init
-    public void load(FMLInitializationEvent event) {    
-        
+    public void load(FMLInitializationEvent event) {
+
     }
-    
+
     @PostInit
     public void postInit(FMLPostInitializationEvent event) {
     }

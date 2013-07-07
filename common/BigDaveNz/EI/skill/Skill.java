@@ -191,6 +191,7 @@ public class Skill {
         skillsMap.put(Excavation.getName(), Excavation);
         skillsMap.put(Mining.getName(), Mining);
         skillsMap.put(Luck.getName(), Luck);
+        //TODO add all skills
     }
 
     public static Skill getSkillFromName(String Name)

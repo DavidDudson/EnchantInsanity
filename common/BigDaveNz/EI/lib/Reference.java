@@ -1,12 +1,12 @@
 package BigDaveNz.EI.lib;
 
 /**
-Enchant Insantiy
-
-Created by BigDaveNz
-
-Reference File for EI Constants
-*/
+ * Enchant Insantiy
+ * 
+ * Created by BigDaveNz
+ * 
+ * Reference File for EI Constants
+ */
 
 public class Reference {
     public static final boolean DEBUG_MODE = false;

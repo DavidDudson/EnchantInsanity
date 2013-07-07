@@ -1,7 +1,7 @@
 package BigDaveNz.EI.enchant;
 
 public class Enchant {
-   
+
     private Object name;
     private int Level;
     private int requiredLevel;
@@ -11,15 +11,14 @@ public class Enchant {
     private int ID;
     private double modifier;
 
-    
     public static void init() {
     }
-    
-    
-    //Enchant constructor
-    public Enchant(int EnchantID, String EnchantName, String requiredSkill, int requiredLevel, double modifier){
+
+    // Enchant constructor
+    public Enchant(int EnchantID, String EnchantName, String requiredSkill,
+            int requiredLevel, double modifier) {
         this.ID = EnchantID;
-        this.name  = EnchantName;
+        this.name = EnchantName;
         this.requiredSkill = requiredSkill;
         this.requiredLevel = requiredLevel;
         this.EnchantLevel = 0;
