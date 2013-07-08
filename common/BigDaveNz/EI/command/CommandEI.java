@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import BigDaveNz.EI.lib.Commands;
+import BigDaveNz.EI.lib.Reference;
 import BigDaveNz.EI.lib.Skills;
 import BigDaveNz.EI.skill.Skill;
 import BigDaveNz.EI.core.util.EILogger;
@@ -31,7 +32,7 @@ public class CommandEI extends CommandBase {
             String commandName = args[0];
             System.arraycopy(args, 1, args, 0, args.length - 1);
 
-            if (commandName.equalsIgnoreCase(Commands.COMMAND_PAR2_XP)) {
+            if (commandName.equalsIgnoreCase("xp")) {
                 try {
                     processXPCommand(commandSender, args);
                 } catch (NoSuchMethodException | SecurityException
@@ -39,12 +40,17 @@ public class CommandEI extends CommandBase {
                         | InvocationTargetException e) {
                     EILogger.severe("Command Failed");
                 }
-            } else if (commandName
-                    .equalsIgnoreCase(Commands.COMMAND_PAR2_LEVEL)) {
+            } else if (commandName.equalsIgnoreCase("level")) {
                 processLevelCommand(commandSender, args);
-            } else if (commandName
-                    .equalsIgnoreCase(Commands.COMMAND_PAR2_LEADERBOARD)) {
+            } else if (commandName.equalsIgnoreCase("leaderboard")) {
                 processLeaderboardCommand(commandSender, args);
+            } else if (commandName.equalsIgnoreCase("debugtoggle")) {
+                Reference.debugMode = !Reference.debugMode;
+                commandSender.sendChatToPlayer("Debug mode toggled to: "
+                        + Boolean.toString(Reference.debugMode));
+            } else if (commandName.equalsIgnoreCase("debugcheck")) {
+                commandSender.sendChatToPlayer("Debug mode currently: "
+                        + Boolean.toString(Reference.debugMode));
             } else
                 throw new WrongUsageException(Commands.COMMAND_EI_USAGE,
                         new Object[0]);

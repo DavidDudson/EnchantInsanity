@@ -13,6 +13,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import BigDaveNz.EI.core.proxy.CommonProxy;
 import BigDaveNz.EI.core.util.EILogger;
 import BigDaveNz.EI.lib.*;
@@ -20,6 +21,7 @@ import BigDaveNz.EI.skill.Skill;
 import BigDaveNz.EI.command.CommandHandler;
 import BigDaveNz.EI.creativetab.CreativeTabEI;
 import BigDaveNz.EI.enchant.Enchant;
+import BigDaveNz.EI.event.Event;
 import BigDaveNz.EI.item.ModItems;
 
 /**
@@ -56,11 +58,12 @@ public class EnchantInsanity {
         Enchant.init();
 
         EILogger.init();
+        
+        Event.init();
     }
 
     @Init
     public void load(FMLInitializationEvent event) {
-
     }
 
     @PostInit

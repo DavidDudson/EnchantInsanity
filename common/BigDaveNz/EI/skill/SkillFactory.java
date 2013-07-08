@@ -68,12 +68,12 @@ public class SkillFactory {
         return null;
     }
 
-    /*
-     * public Skill createNewSkill(String skillName, double
-     * modifier,SkillTypeEnum skillType){
-     * 
-     * newSkill = SkillFactory.instance(); return null;
-     * 
-     * } //TODO create function
-     */
+    
+     public void createNewSkill(String skillName, double
+     modifier,SkillTypeEnum skillType){
+     
+     //newSkill = this.instance(); return null;
+     
+     //TODO create function
+     }
 }
