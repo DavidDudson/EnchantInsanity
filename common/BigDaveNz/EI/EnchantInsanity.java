@@ -13,10 +13,12 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import BigDaveNz.EI.core.proxy.CommonProxy;
 import BigDaveNz.EI.core.util.EILogger;
 import BigDaveNz.EI.lib.*;
+import BigDaveNz.EI.network.PacketHandler;
 import BigDaveNz.EI.skill.Skill;
 import BigDaveNz.EI.command.CommandHandler;
 import BigDaveNz.EI.creativetab.CreativeTabEI;
@@ -33,6 +35,7 @@ import BigDaveNz.EI.item.ModItems;
  */
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
+@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 public class EnchantInsanity {
 
     @Instance(Reference.MOD_ID)
