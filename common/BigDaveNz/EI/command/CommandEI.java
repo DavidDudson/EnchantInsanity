@@ -71,7 +71,7 @@ public class CommandEI extends CommandBase {
                     Skill.class);
             int xp = (int) method.invoke(skill);
             String message = "Current: " + args[0] + " Level: " + xp;
-            commandSender.addChatMessage(message);
+            ChatMessageHandler.icommandsenderReply(commandSender,message);
         }
     }
 
@@ -82,7 +82,7 @@ public class CommandEI extends CommandBase {
             if (subCommand.equalsIgnoreCase(Skills.SKILL_UNBREAKING)) {
                 String message = "Current: " + Skills.SKILL_UNBREAKING
                         + " Level: " + Skill.Unbreaking.getCurrentLevel();
-                commandSender.addChatMessage(message);
+                ChatMessageHandler.icommandsenderReply(commandSender,message);
             } else
                 throw new WrongUsageException(Commands.COMMAND_XP_USAGE,
                         new Object[0]);
@@ -99,7 +99,7 @@ public class CommandEI extends CommandBase {
             if (subCommand.equalsIgnoreCase(Skills.SKILL_UNBREAKING)) {
                 String message = "Current: " + Skills.SKILL_UNBREAKING
                         + " Level: " + Skill.Unbreaking.getCurrentLeaderboard();
-                commandSender.sendChatToPlayer(message);
+                ChatMessageHandler.icommandsenderReply(commandSender,message);
             } else
                 throw new WrongUsageException(Commands.COMMAND_XP_USAGE,
                         new Object[0]);
