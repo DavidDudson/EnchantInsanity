@@ -1,6 +1,7 @@
 package BigDaveNz.EI.core.util;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatMessageComponent;
 import BigDaveNz.EI.lib.Reference;
 
 /**
@@ -9,10 +10,9 @@ import BigDaveNz.EI.lib.Reference;
  */
 public class EIDebugHandler {
     
-    public static void sendDebugToPlayer(String message, EntityPlayer player){
-        
+    public static void sendDebugToPlayer(String message, EntityPlayer player){ 
         if(Reference.debugMode == true){
-            player.sendChatToPlayer(message);
+            player.addChatMessage(message);
         }   
     }
     

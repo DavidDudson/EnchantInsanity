@@ -7,6 +7,7 @@ import BigDaveNz.EI.lib.Commands;
 import BigDaveNz.EI.lib.Reference;
 import BigDaveNz.EI.lib.Skills;
 import BigDaveNz.EI.skill.Skill;
+import BigDaveNz.EI.core.util.ChatMessageHandler;
 import BigDaveNz.EI.core.util.EILogger;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
@@ -46,10 +47,9 @@ public class CommandEI extends CommandBase {
                 processLeaderboardCommand(commandSender, args);
             } else if (commandName.equalsIgnoreCase("debugtoggle")) {
                 Reference.debugMode = !Reference.debugMode;
-                commandSender.sendChatToPlayer("Debug mode toggled to: "
-                        + Boolean.toString(Reference.debugMode));
+                ChatMessageHandler.icommandsenderReply(commandSender,"Debug mode toggled to: "+ Boolean.toString(Reference.debugMode));
             } else if (commandName.equalsIgnoreCase("debugcheck")) {
-                commandSender.sendChatToPlayer("Debug mode currently: "
+                ChatMessageHandler.icommandsenderReply(commandSender,"Debug mode currently: "
                         + Boolean.toString(Reference.debugMode));
             } else
                 throw new WrongUsageException(Commands.COMMAND_EI_USAGE,
@@ -71,7 +71,7 @@ public class CommandEI extends CommandBase {
                     Skill.class);
             int xp = (int) method.invoke(skill);
             String message = "Current: " + args[0] + " Level: " + xp;
-            commandSender.sendChatToPlayer(message);
+            commandSender.addChatMessage(message);
         }
     }
 
@@ -82,7 +82,7 @@ public class CommandEI extends CommandBase {
             if (subCommand.equalsIgnoreCase(Skills.SKILL_UNBREAKING)) {
                 String message = "Current: " + Skills.SKILL_UNBREAKING
                         + " Level: " + Skill.Unbreaking.getCurrentLevel();
-                commandSender.sendChatToPlayer(message);
+                commandSender.addChatMessage(message);
             } else
                 throw new WrongUsageException(Commands.COMMAND_XP_USAGE,
                         new Object[0]);
@@ -106,6 +106,11 @@ public class CommandEI extends CommandBase {
         } else
             throw new WrongUsageException(Commands.COMMAND_XP_USAGE,
                     new Object[0]);
+    }
+
+    @Override
+    public String getCommandUsage(ICommandSender icommandsender) {
+        return null;
     }
 
 }

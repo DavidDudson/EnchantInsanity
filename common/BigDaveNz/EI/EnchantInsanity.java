@@ -3,6 +3,7 @@ package BigDaveNz.EI;
 import net.minecraft.creativetab.CreativeTabs;
 
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
@@ -40,11 +41,10 @@ public class EnchantInsanity {
 
     @Instance(Reference.MOD_ID)
     public static EnchantInsanity instance;
-
     public static CreativeTabs tabsEI = new CreativeTabEI(
             CreativeTabs.getNextID(), Reference.MOD_ID);
 
-    @ServerStarting
+    @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
         CommandHandler.initCommands(event);
     }
@@ -52,7 +52,7 @@ public class EnchantInsanity {
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static CommonProxy proxy;
 
-    @PreInit
+    @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ModItems.init();
 
@@ -65,11 +65,11 @@ public class EnchantInsanity {
         Event.init();
     }
 
-    @Init
+    @EventHandler
     public void load(FMLInitializationEvent event) {
     }
 
-    @PostInit
+    @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
     }
 }

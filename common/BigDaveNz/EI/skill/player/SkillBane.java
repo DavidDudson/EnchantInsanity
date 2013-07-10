@@ -7,5 +7,4 @@ public class SkillBane extends Skill {
     public SkillBane(String skillName, double modifier) {
         super(skillName, modifier);
     }
-
 }
