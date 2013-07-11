@@ -1,7 +1,8 @@
-package BigDaveNz.EI.core.util;
+package BigDaveNz.EI.core.handlers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatMessageComponent;
+import BigDaveNz.EI.core.util.EILogger;
 import BigDaveNz.EI.lib.Reference;
 
 /**

@@ -1,7 +1,7 @@
 package BigDaveNz.EI.event;
 
 
-import BigDaveNz.EI.core.util.EIDebugHandler;
+import BigDaveNz.EI.core.handlers.EIDebugHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.ForgeSubscribe;
 
