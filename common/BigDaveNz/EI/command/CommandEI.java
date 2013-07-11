@@ -8,7 +8,7 @@ import BigDaveNz.EI.lib.Reference;
 import BigDaveNz.EI.lib.Skills;
 import BigDaveNz.EI.skill.EISkill;
 import BigDaveNz.EI.skill.Skill;
-import BigDaveNz.EI.core.handlers.ChatMessageHandler;
+import BigDaveNz.EI.core.handler.ChatMessageHandler;
 import BigDaveNz.EI.core.util.EILogger;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;

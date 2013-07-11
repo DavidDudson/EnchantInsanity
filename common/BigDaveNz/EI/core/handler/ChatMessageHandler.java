@@ -1,4 +1,4 @@
-package BigDaveNz.EI.core.handlers;
+package BigDaveNz.EI.core.handler;
 import BigDaveNz.EI.lib.Reference;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatMessageComponent;

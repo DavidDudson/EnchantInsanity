@@ -1,6 +1,11 @@
 package BigDaveNz.EI.leaderboard;
 
 import java.util.ArrayList;
+import java.util.Map;
+
+import BigDaveNz.EI.skill.EISkill;
+
+import net.minecraft.entity.player.EntityPlayer;
 
 /**
  * @author BigDaveNz
@@ -8,21 +13,22 @@ import java.util.ArrayList;
  */
 public class GlobalLeaderboard {
 
-    private int playerCount;
-    private int skillCount;
-    private String globalLeaderboard[][] = new String [playerCount][skillCount];
-    private String skillList[];
-    private int skillXp = 0;
-    private String stringSkillXp = Integer.toString(skillXp);
+    private static int playerCount;
+    private static int skillCount;
+    private static String globalLeaderboard[][] = new String [playerCount][getSkillCount()];
+    private static String skillList[];
+    //private String stringSkillXp = Integer.toString(skillXp); 
+    
+    public static void addPlayerToLeaderboard(EntityPlayer player){
+    	String playerName = player.getEntityName();
+    	playerCount++;
+    }
+    
+    public static void addSkill(EntityPlayer player, EISkill skill){
+    	skillCount++;
+    }
 
-//    public static globalLeaderboard() {
-//
-//        for (String playerName : playerList) {
-//
-//            for (String skillName : skillList) {
-//
-//            }
-//        }
-//    }
-//TODO FInish GLobal Leaderboard
+	public static int getSkillCount() {
+		return skillCount;
+	}
 }

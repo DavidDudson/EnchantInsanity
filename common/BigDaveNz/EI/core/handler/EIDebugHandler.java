@@ -1,4 +1,4 @@
-package BigDaveNz.EI.core.handlers;
+package BigDaveNz.EI.core.handler;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatMessageComponent;
@@ -13,7 +13,7 @@ public class EIDebugHandler {
     
     public static void sendDebugToPlayer(String message, EntityPlayer player){ 
         if(Reference.debugMode == true){
-            player.addChatMessage(message);
+            player.addChatMessage("[DEBUG] " + message);
         }   
     }
     

@@ -56,8 +56,6 @@ public class EnchantInsanity {
     public void preInit(FMLPreInitializationEvent event) {
         ModItems.init();
 
-        Skill.init();
-
         Enchant.init();
 
         EILogger.init();

@@ -13,6 +13,7 @@ public class EIPlayerTracker implements IPlayerTracker{
 
     @Override
     public void onPlayerLogout(EntityPlayer player) {
+        EventHandler.onPlayerLogout(player);
     }
 
     @Override
@@ -22,6 +23,4 @@ public class EIPlayerTracker implements IPlayerTracker{
     @Override
     public void onPlayerRespawn(EntityPlayer player) {
     }
-
-
 }

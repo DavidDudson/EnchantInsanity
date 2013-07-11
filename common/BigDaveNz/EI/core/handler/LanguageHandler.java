@@ -1,4 +1,4 @@
-package BigDaveNz.EI.core.handlers;
+package BigDaveNz.EI.core.handler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class LanguageHandler {

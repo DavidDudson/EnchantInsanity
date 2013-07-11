@@ -6,6 +6,8 @@ import java.util.Map;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
 
+import BigDaveNz.EI.core.handler.EIDebugHandler;
+import BigDaveNz.EI.leaderboard.GlobalLeaderboard;
 import BigDaveNz.EI.lib.Skills;
 
 /**
@@ -21,7 +23,7 @@ public class EISkill {
 	private double modifier = 1;
 	private int currentXp = 0;
 	private int id;
-	private static int nextId = 0;
+	private static int nextId = -1;
 	private static Map<String, EISkill> skillsMap = new HashMap<String, EISkill>();
 	private SkillTypeEnum skillType;
 
@@ -61,15 +63,14 @@ public class EISkill {
 		this.skillType = skillType;
 	}
 
-	private String generateLeaderboard() {
-		return null;
-	}
-
 	public static EISkill createNewSkill(EntityPlayer player, String skillName,
 			double modifier, SkillTypeEnum skillType) {
 
 		EISkill newSkill = new EISkill(player, skillName, modifier, skillType);
+		String playerName = player.username;
 		addskillToMap(skillName, newSkill);
+		GlobalLeaderboard.addSkill(player, newSkill);
+		EIDebugHandler.sendDebugInfoToConsole("New Skill: " + skillName + " has been created for player: " + playerName + " with ID: " + newSkill.getId());
 		return newSkill;
 	}
 
@@ -85,6 +86,7 @@ public class EISkill {
 		} else {
 			return requestedSkill;
 		}
-
 	}
+	
+	
 }
