@@ -24,7 +24,7 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
  * @author BigDaveNz
  * 
  */
-public class EventHandler {
+public class EIEvent {
 
 	private static boolean playerLoggedIn = false;
 
@@ -59,6 +59,7 @@ public class EventHandler {
 	
 	@ForgeSubscribe
 	public void onLivingHurt(LivingHurtEvent event) {
+	       EILivingHurt.process(event);
 	}
 	
 	@ForgeSubscribe

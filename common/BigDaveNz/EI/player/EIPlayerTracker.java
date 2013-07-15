@@ -2,18 +2,18 @@ package BigDaveNz.EI.player;
 
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.common.IPlayerTracker;
-import BigDaveNz.EI.event.EventHandler;
+import BigDaveNz.EI.event.EIEvent;
 
 public class EIPlayerTracker implements IPlayerTracker{
 
     @Override
     public void onPlayerLogin(EntityPlayer player) {
-        EventHandler.onPlayerLogin(player);
+        EIEvent.onPlayerLogin(player);
     }
 
     @Override
     public void onPlayerLogout(EntityPlayer player) {
-        EventHandler.onPlayerLogout(player);
+        EIEvent.onPlayerLogout(player);
     }
 
     @Override

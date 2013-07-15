@@ -70,7 +70,9 @@ public class EISkill {
 		String playerName = player.username;
 		addskillToMap(skillName, newSkill);
 		GlobalLeaderboard.addSkill(player, newSkill);
-		EIDebugHandler.sendDebugInfoToConsole("New Skill: " + skillName + " has been created for player: " + playerName + " with ID: " + newSkill.getId());
+		EIDebugHandler.sendDebugInfoToConsole("New Skill: " + skillName
+				+ " has been created for player: " + playerName + " with ID: "
+				+ newSkill.getId());
 		return newSkill;
 	}
 
@@ -87,6 +89,9 @@ public class EISkill {
 			return requestedSkill;
 		}
 	}
-	
-	
+		
+	public static void getSkillsMap(){	
+		EIDebugHandler.sendDebugInfoToConsole(skillsMap.toString());
+	}
+
 }

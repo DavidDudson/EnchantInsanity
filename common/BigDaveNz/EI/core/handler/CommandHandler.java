@@ -1,5 +1,6 @@
-package BigDaveNz.EI.command;
+package BigDaveNz.EI.core.handler;
 
+import BigDaveNz.EI.command.CommandEI;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 public class CommandHandler {

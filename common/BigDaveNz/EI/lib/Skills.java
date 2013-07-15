@@ -54,28 +54,28 @@ public class Skills {
 
     // Entity Hostile Skill Modifiers
 
-    public final static double SKILL_BANE_SKELETON_MODIFIER = 1;
-    public final static double SKILL_BANE_ZOMBIE_MODIFIER = 1;
-    public final static double SKILL_BANE_SLIME_MODIFIER = 1;
-    public final static double SKILL_BANE_BLAZE_MODIFIER = 1;
-    public final static double SKILL_BANE_SPIDER_MODIFIER = 1;
-    public final static double SKILL_BANE_WITHER_MODIFIER = 1;
-    public final static double SKILL_BANE_BAT_MODIFIER = 1;
-    public final static double SKILL_BANE_ENDERMAN_MODIFIER = 1;
-    public final static double SKILL_BANE_GHAST_MODIFIER = 1;
+    public final static double SKILL_SKELETON_MODIFIER = 1;
+    public final static double SKILL_ZOMBIE_MODIFIER = 1;
+    public final static double SKILL_SLIME_MODIFIER = 1;
+    public final static double SKILL_BLAZE_MODIFIER = 1;
+    public final static double SKILL_SPIDER_MODIFIER = 1;
+    public final static double SKILL_WITHER_MODIFIER = 1;
+    public final static double SKILL_BAT_MODIFIER = 1;
+    public final static double SKILL_ENDERMAN_MODIFIER = 1;
+    public final static double SKILL_GHAST_MODIFIER = 1;
 
     // Entity Hostile Skill Modifiers
 
-    public final static double SKILL_BANE_SHEEP_MODIFIER = 1;
-    public final static double SKILL_BANE_PIG_MODIFIER = 1;
-    public final static double SKILL_BANE_COW_MODIFIER = 1;
-    public final static double SKILL_BANE_WOLF_MODIFIER = 1;
-    public final static double SKILL_BANE_SQUID_MODIFIER = 1;
-    public final static double SKILL_BANE_HORSE_MODIFIER = 1;
-    public final static double SKILL_BANE_CHICKEN_MODIFIER = 1;
-    public final static double SKILL_BANE_OCELOT_MODIFIER = 1;
-    public final static double SKILL_BANE_GOLEM_MODIFIER = 1;
-    public final static double SKILL_BANE_NPC_MODIFIER = 1;
+    public final static double SKILL_SHEEP_MODIFIER = 1;
+    public final static double SKILL_PIG_MODIFIER = 1;
+    public final static double SKILL_COW_MODIFIER = 1;
+    public final static double SKILL_WOLF_MODIFIER = 1;
+    public final static double SKILL_SQUID_MODIFIER = 1;
+    public final static double SKILL_HORSE_MODIFIER = 1;
+    public final static double SKILL_CHICKEN_MODIFIER = 1;
+    public final static double SKILL_OCELOT_MODIFIER = 1;
+    public final static double SKILL_GOLEM_MODIFIER = 1;
+    public final static double SKILL_NPC_MODIFIER = 1;
 
     // Block Related XP gain
     public final static int XP_PER_COBBLE = 1;

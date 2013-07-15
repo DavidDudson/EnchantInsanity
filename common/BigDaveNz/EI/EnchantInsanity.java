@@ -3,6 +3,7 @@ package BigDaveNz.EI;
 import net.minecraft.creativetab.CreativeTabs;
 
 import cpw.mods.fml.common.Mod;
+
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -16,15 +17,16 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
+import BigDaveNz.EI.core.handler.CommandHandler;
+import BigDaveNz.EI.core.handler.EIEventHandler;
 import BigDaveNz.EI.core.proxy.CommonProxy;
 import BigDaveNz.EI.core.util.EILogger;
 import BigDaveNz.EI.lib.*;
 import BigDaveNz.EI.network.PacketHandler;
 import BigDaveNz.EI.skill.Skill;
-import BigDaveNz.EI.command.CommandHandler;
 import BigDaveNz.EI.creativetab.CreativeTabEI;
 import BigDaveNz.EI.enchant.Enchant;
-import BigDaveNz.EI.event.Event;
+import BigDaveNz.EI.event.EIEvent;
 import BigDaveNz.EI.item.ModItems;
 
 /**
@@ -60,7 +62,7 @@ public class EnchantInsanity {
 
         EILogger.init();
         
-        Event.init();
+        EIEventHandler.init();
     }
 
     @EventHandler
