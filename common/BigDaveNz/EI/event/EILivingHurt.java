@@ -19,7 +19,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 /**
  * @author BigDaveNz
- *
+ * 
  */
 public class EILivingHurt {
 
@@ -30,18 +30,16 @@ public class EILivingHurt {
         if (event.entityLiving instanceof EntityPlayerMP) {
             int amount = (int) event.ammount * 10;
             DamageSource damageSource = event.source;
-            EntityPlayer player = (EntityPlayer)event.entityLiving;
+            EntityPlayer player = (EntityPlayer) event.entityLiving;
             String username = player.getEntityName();
-            
-            EIDebugHandler.sendDebugInfoToConsole("Player: " + username + "Was hurt by: " + damageSource.toString() + ". Amount: " + amount);
             String damageType = damageSource.getDamageType();
-            EIDebugHandler.sendDebugInfoToConsole("DamageType" + damageType);
-            
+            EIDebugHandler.sendDebugInfoToConsole("Player: " + username + " Was hurt by: " + damageType + ". Amount: " + amount);
+
             switch (damageType) {
-                
+
                 case "fall":
                     int xpGain = amount * XPModifiers.XP_PER_DAMAGE_FALL;
-                    
+
             }
         }
     }

@@ -33,19 +33,21 @@ public class EIEvent {
     public static void onPlayerLogin(EntityPlayer player) {
 
         String playerName = player.getEntityName();
-        EIPlayer.addPlayerToList(playerName);
-        player.addChatMessage("Welcome to Enchant Insanity!");
-        EIDebugHandler.sendDebugToPlayer("Debug mode is currently active", player);
-        Skill.init(player);
-        if (Reference.ModInitialised != true) {
-            boolean init = GlobalLeaderboard.loadLeaderboard();
-            if (init == true) {
-                Reference.ModInitialised = true;
-            }
-            else {
-                EILogger.severe("File Load Failed, if you had previously played this world, all EI data may be gone");
-            }
+        if(!EIPlayer.players.contains(playerName)){
+            //EIPlayer.createEIPlayer(player);
+            player.addChatMessage("Welcome to Enchant Insanity!\n Version is: " + Reference.MOD_VERSION);
         }
+        EIDebugHandler.sendDebugToPlayer("Debug mode is currently active", player);
+
+//        if (Reference.ModInitialised != true) {
+//            boolean init = GlobalLeaderboard.loadLeaderboard();
+//            if (init == true) {
+//                Reference.ModInitialised = true;
+//            }
+//            else {
+//                EILogger.severe("File Load Failed, if you had previously played this world, all EI data may be gone");
+//            }
+//        }
     }
 
     public static void onPlayerLogout(EntityPlayer player) {

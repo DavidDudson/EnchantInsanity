@@ -4,6 +4,7 @@
 package BigDaveNz.EI.core.handler;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -26,9 +27,12 @@ public class FileHandler {
             out.close();
             fileOut.close();
         }
-        catch (IOException e) {
+        catch (FileNotFoundException e) {
             EILogger.warning("EI save file not found for this world, creating new file now");
             createLeaderboardFile();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
         }
 
     }

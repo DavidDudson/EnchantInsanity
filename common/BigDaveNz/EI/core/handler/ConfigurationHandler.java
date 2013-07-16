@@ -1,9 +1,10 @@
-package BigDaveNz.EI.configuration;
+package BigDaveNz.EI.core.handler;
 
 import static net.minecraftforge.common.Configuration.CATEGORY_GENERAL;
 
 import java.io.File;
 
+import BigDaveNz.EI.configuration.ConfigurationSettings;
 import BigDaveNz.EI.lib.ConfigRef;
 
 import net.minecraftforge.common.Configuration;

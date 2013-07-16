@@ -25,8 +25,8 @@ public class EISkill {
     private int                         currentXp = 0;
     private int                         id;
     private static int                  nextId    = -1;
-    private static Map<String, EISkill> skillsMap = new HashMap<String, EISkill>();
     private static ArrayList<String>    skillList = new ArrayList();
+    private static Map<String, EISkill> skillsMap = new HashMap<String, EISkill>();
     private SkillTypeEnum               skillType;
 
     public String getSkillName() {
@@ -54,7 +54,7 @@ public class EISkill {
         return skillType;
     }
 
-    private EISkill(EntityPlayer player, String skillName, double modifier, SkillTypeEnum skillType) {
+    private EISkill(String skillName, double modifier, SkillTypeEnum skillType) {
         this.skillName = skillName;
         this.minLevel = 0;
         this.modifier = modifier;
@@ -64,12 +64,11 @@ public class EISkill {
         this.skillType = skillType;
     }
 
-    public static EISkill createNewSkill(EntityPlayer player, String skillName, double modifier, SkillTypeEnum skillType) {
+    public static EISkill createNewSkill(String skillName, double modifier, SkillTypeEnum skillType) {
 
-        EISkill newSkill = new EISkill(player, skillName, modifier, skillType);
-        String playerName = player.username;
+        EISkill newSkill = new EISkill(skillName, modifier, skillType);
         addskillToMap(skillName, newSkill);
-        EIDebugHandler.sendDebugInfoToConsole("New Skill: " + skillName + " has been created for player: " + playerName + " with ID: " + newSkill.getId());
+        EIDebugHandler.sendDebugInfoToConsole("New Skill: " + skillName + " with ID: " + newSkill.getId());
         return newSkill;
     }
 
@@ -91,17 +90,17 @@ public class EISkill {
         }
     }
 
-    public static void getSkillsMap() {
-        EIDebugHandler.sendDebugInfoToConsole(skillsMap.toString());
+    public static Map cloneSkillsMap() {
+        Map map = new HashMap(skillsMap);
+        return map;
     }
 
     public static void addXpToSkill(String skillName, String playerName, int amount) {
-        //;
-        //skill.currentXp += amount;
+        // ;
+        // skill.currentXp += amount;
     }
 
     public static int getSkillAmount() {
         return skillList.size();
     }
-
 }

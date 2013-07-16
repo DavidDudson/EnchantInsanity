@@ -63,6 +63,8 @@ public class EnchantInsanity {
         EILogger.init();
 
         EIEventHandler.init();
+        
+        Skill.init();
     }
 
     @EventHandler
