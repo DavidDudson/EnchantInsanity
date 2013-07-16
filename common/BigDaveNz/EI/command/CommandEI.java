@@ -5,10 +5,11 @@ import java.lang.reflect.Method;
 
 import BigDaveNz.EI.lib.Commands;
 import BigDaveNz.EI.lib.Reference;
-import BigDaveNz.EI.lib.Skills;
+import BigDaveNz.EI.lib.SkillModifiers;
 import BigDaveNz.EI.skill.EISkill;
 import BigDaveNz.EI.skill.Skill;
 import BigDaveNz.EI.core.handler.ChatMessageHandler;
+import BigDaveNz.EI.core.handler.FileHandler;
 import BigDaveNz.EI.core.util.EILogger;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
@@ -60,6 +61,9 @@ public class CommandEI extends CommandBase {
                 case "version":
                     ChatMessageHandler.icommandsenderReply(commandSender, "Version: " + Reference.MOD_VERSION);
                     break;
+                    
+                case "backupModFiles":
+                    FileHandler.backupLeaderboard();
 
                 default:
                     throw new WrongUsageException(Commands.COMMAND_EI_USAGE, new Object[0]);
@@ -95,7 +99,7 @@ public class CommandEI extends CommandBase {
 
     public void getIntMethodInSkill(String skillName, String methodName, ICommandSender commandSender) {
         if (skillName.length() > 0) {
-            EISkill skill = EISkill.getSkillFromName(skillName);
+            EISkill skill = EISkill.getSkillFromMap(skillName);
             Method method = null;
             try {
                 method = skill.getClass().getMethod(methodName, EISkill.class);

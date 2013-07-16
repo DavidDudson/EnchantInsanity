@@ -21,6 +21,7 @@ import BigDaveNz.EI.core.handler.CommandHandler;
 import BigDaveNz.EI.core.handler.EIEventHandler;
 import BigDaveNz.EI.core.proxy.CommonProxy;
 import BigDaveNz.EI.core.util.EILogger;
+import BigDaveNz.EI.leaderboard.GlobalLeaderboard;
 import BigDaveNz.EI.lib.*;
 import BigDaveNz.EI.network.PacketHandler;
 import BigDaveNz.EI.skill.Skill;
@@ -43,8 +44,7 @@ public class EnchantInsanity {
 
     @Instance(Reference.MOD_ID)
     public static EnchantInsanity instance;
-    public static CreativeTabs tabsEI = new CreativeTabEI(
-            CreativeTabs.getNextID(), Reference.MOD_ID);
+    public static CreativeTabs    tabsEI = new CreativeTabEI(CreativeTabs.getNextID(), Reference.MOD_ID);
 
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
@@ -61,15 +61,13 @@ public class EnchantInsanity {
         Enchant.init();
 
         EILogger.init();
-        
+
         EIEventHandler.init();
     }
 
     @EventHandler
-    public void load(FMLInitializationEvent event) {
-    }
+    public void load(FMLInitializationEvent event) {}
 
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-    }
+    public void postInit(FMLPostInitializationEvent event) {}
 }

@@ -3,10 +3,17 @@
  */
 package BigDaveNz.EI.event;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+
 import BigDaveNz.EI.core.handler.EIDebugHandler;
+import BigDaveNz.EI.lib.XPModifiers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -17,29 +24,25 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 public class EILivingHurt {
 
     /**
-     * 
+     * General Living Hurt Processor
      */
     public static void process(LivingHurtEvent event) {
-        int amount = (int)event.ammount * 10;
-        DamageSource damageSource = event.source;
-        EntityLivingBase entity = event.entityLiving;
-        Class<? extends EntityLivingBase> entityClass = entity.getClass();
-        String className = entityClass.getName();
-        EIDebugHandler.sendDebugInfoToConsole("Entity was hurt: " + className);
-        
-        switch (className){
+        if (event.entityLiving instanceof EntityPlayerMP) {
+            int amount = (int) event.ammount * 10;
+            DamageSource damageSource = event.source;
+            EntityPlayer player = (EntityPlayer)event.entityLiving;
+            String username = player.getEntityName();
             
-            case "EntityPlayerMP":
-                playerHurt(entityClass,damageSource,amount);
+            EIDebugHandler.sendDebugInfoToConsole("Player: " + username + "Was hurt by: " + damageSource.toString() + ". Amount: " + amount);
+            String damageType = damageSource.getDamageType();
+            EIDebugHandler.sendDebugInfoToConsole("DamageType" + damageType);
+            
+            switch (damageType) {
+                
+                case "fall":
+                    int xpGain = amount * XPModifiers.XP_PER_DAMAGE_FALL;
+                    
+            }
         }
-        
     }
-    
-    private static void playerHurt(Class<? extends EntityLivingBase> entityClass, DamageSource source, int amount) {
-        entityClass = (Class<? extends EntityLivingBase>)entityClass;
-        String username = entityClass.username;
-        EIDebugHandler.sendDebugInfoToConsole(username + " was hurt by: " +  source + " with " + amount + "Damage");
-    }
-    
-
 }

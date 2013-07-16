@@ -1,6 +1,10 @@
 package BigDaveNz.EI.event;
 
 import BigDaveNz.EI.core.handler.EIDebugHandler;
+import BigDaveNz.EI.core.util.EILogger;
+import BigDaveNz.EI.leaderboard.GlobalLeaderboard;
+import BigDaveNz.EI.lib.Reference;
+import BigDaveNz.EI.player.EIPlayer;
 import BigDaveNz.EI.skill.Skill;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -26,71 +30,65 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
  */
 public class EIEvent {
 
-	private static boolean playerLoggedIn = false;
+    public static void onPlayerLogin(EntityPlayer player) {
 
-	public static void onPlayerLogin(EntityPlayer player) {
+        String playerName = player.getEntityName();
+        EIPlayer.addPlayerToList(playerName);
+        player.addChatMessage("Welcome to Enchant Insanity!");
+        EIDebugHandler.sendDebugToPlayer("Debug mode is currently active", player);
+        Skill.init(player);
+        if (Reference.ModInitialised != true) {
+            boolean init = GlobalLeaderboard.loadLeaderboard();
+            if (init == true) {
+                Reference.ModInitialised = true;
+            }
+            else {
+                EILogger.severe("File Load Failed, if you had previously played this world, all EI data may be gone");
+            }
+        }
+    }
 
-		String playerName = player.getEntityName();
-		player.addChatMessage("Welcome to Enchant Insanity!");
-		EIDebugHandler.sendDebugToPlayer("Debug mode is currently active", player);
-		Skill.init(player);
+    public static void onPlayerLogout(EntityPlayer player) {
 
-		playerLoggedIn = true;
-	}
+        String playerName = player.getEntityName();
+        EIDebugHandler.sendDebugInfoToConsole(playerName + "logged out and EI info is unloaded");
+    }
 
-	public static void onPlayerLogout(EntityPlayer player) {
+    @ForgeSubscribe
+    public void onPlayerJoinWorld(EntityJoinWorldEvent event) {}
 
-		String playerName = player.getEntityName();
-		playerLoggedIn = false;
-		EIDebugHandler.sendDebugInfoToConsole(playerName + "logged out and EI is unloaded");
-	}
+    @ForgeSubscribe
+    public void onLivingAttack(LivingAttackEvent event) {}
 
-	@ForgeSubscribe
-	public void onPlayerJoinWorld(EntityJoinWorldEvent event) {
-	}
-	
-	@ForgeSubscribe
-	public void onLivingAttack(LivingAttackEvent event) {
-	}
-	
-	@ForgeSubscribe
-	public void onLivingDeath(LivingDeathEvent event) {
-	}
-	
-	@ForgeSubscribe
-	public void onLivingHurt(LivingHurtEvent event) {
-	       EILivingHurt.process(event);
-	}
-	
-	@ForgeSubscribe
-	public void onLivingFall(LivingFallEvent event) {
-	}
-	
-	@ForgeSubscribe
-	public void onArrowLoose(ArrowLooseEvent event) {
-	}
-	
-	@ForgeSubscribe
-	public void onAttackEntity(AttackEntityEvent event) {
-	}
-	
-	@ForgeSubscribe
-	public void onBoneMeal(BonemealEvent event) {
-	}
-	
-	@ForgeSubscribe
-	public void onFillBucket(FillBucketEvent event) {
-	}
-	
-	@ForgeSubscribe
-	public void onPlayerInteract(PlayerInteractEvent event) {
-	}
-	
-	@ForgeSubscribe
-	public void onPlayerSleep(PlayerSleepInBedEvent event) {
-	}
-	
-	@ForgeSubscribe
-	public void onUseHoe(UseHoeEvent event) {
-	}
+    @ForgeSubscribe
+    public void onLivingDeath(LivingDeathEvent event) {}
+
+    @ForgeSubscribe
+    public void onLivingHurt(LivingHurtEvent event) {
+        EILivingHurt.process(event);
+    }
+
+    @ForgeSubscribe
+    public void onLivingFall(LivingFallEvent event) {}
+
+    @ForgeSubscribe
+    public void onArrowLoose(ArrowLooseEvent event) {}
+
+    @ForgeSubscribe
+    public void onAttackEntity(AttackEntityEvent event) {}
+
+    @ForgeSubscribe
+    public void onBoneMeal(BonemealEvent event) {}
+
+    @ForgeSubscribe
+    public void onFillBucket(FillBucketEvent event) {}
+
+    @ForgeSubscribe
+    public void onPlayerInteract(PlayerInteractEvent event) {}
+
+    @ForgeSubscribe
+    public void onPlayerSleep(PlayerSleepInBedEvent event) {}
+
+    @ForgeSubscribe
+    public void onUseHoe(UseHoeEvent event) {}
 }
