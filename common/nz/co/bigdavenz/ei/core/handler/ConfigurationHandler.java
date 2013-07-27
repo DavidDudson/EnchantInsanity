@@ -4,28 +4,32 @@ import static net.minecraftforge.common.Configuration.CATEGORY_GENERAL;
 
 import java.io.File;
 
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 import net.minecraftforge.common.Configuration;
-import nz.co.bigdavenz.ei.configuration.ConfigurationSettings;
+import net.minecraftforge.common.Property;
 import nz.co.bigdavenz.ei.lib.ConfigRef;
+import nz.co.bigdavenz.ei.skill.EISkill;
 
 public class ConfigurationHandler {
 
     public static Configuration configuration;
 
-    public static void init(File configFile) {
+    public static void init(FMLPreInitializationEvent event) {
 
-        configuration = new Configuration(configFile);
+        configuration = new Configuration(event.getSuggestedConfigurationFile());
 
-        try {
-            configuration.load();
-
-            ConfigurationSettings.DIFFICULTY_MODIFIER = configuration.get(
-                    CATEGORY_GENERAL, ConfigRef.DIFFICULTY_MODIFIER_CONFIGNAME,
-                    ConfigRef.DEFAULT_DIFFICULTY_MODIFIER).getDouble(
-                    ConfigRef.DEFAULT_DIFFICULTY_MODIFIER);
-        } finally {
-            configuration.save();
+        configuration.load();
+        
+        for (EISkill skill : EISkill.skillList) {
+            Property modifierProperty = configuration.get(ConfigRef.CATEGORY_SKILLS_MODIFIERS, skill.getSkillName() + " ", skill.getModifier());
+            Property disabledProperty = configuration.get(ConfigRef.CATEGORY_SKILLS_DISABLED, skill.getSkillName() + " is enabled ", skill.getEnabled());
+            skill.setModifier(modifierProperty.getDouble(skill.getModifier()));
+            skill.setEnabled(disabledProperty.getBoolean(true));
         }
+        configuration.addCustomCategoryComment(ConfigRef.CATEGORY_SKILLS_MODIFIERS, "Allows you to alter the rate at which Xp is gathered for a certain skill");
+        configuration.addCustomCategoryComment(ConfigRef.CATEGORY_SKILLS_MODIFIERS, "Allows you disable a certain skill");
+        
+        configuration.save();
     }
 }

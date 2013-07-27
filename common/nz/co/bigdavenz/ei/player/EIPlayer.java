@@ -27,7 +27,7 @@ public class EIPlayer implements IExtendedEntityProperties {
     public static IExtendedEntityProperties createPlayerData() {
         Map skillMapByName = EISkill.cloneSkillsMap();
         NBTTagCompound eiNBT = new NBTTagCompound();
-        eiNBT.setTag(null, eiNBT);
+        eiNBT.setTag("eiSkillData", eiNBT);
         eiNBT.setTag("eiData", eiNBT);
         return null;
     }

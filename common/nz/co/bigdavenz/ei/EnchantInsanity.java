@@ -57,7 +57,7 @@ public class EnchantInsanity {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-
+        Load.loadEI(event);
     }
 
     @EventHandler

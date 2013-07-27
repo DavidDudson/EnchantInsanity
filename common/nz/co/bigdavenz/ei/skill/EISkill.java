@@ -24,8 +24,9 @@ public class EISkill {
     private double                      modifier   = 1;
     private int                         currentXp  = 0;
     private int                         id         = -1;
+    private boolean                     skillEnabled;
     private static int                  nextId     = -1;
-    private static ArrayList<EISkill>   skillList  = new ArrayList();
+    public static ArrayList<EISkill>    skillList  = new ArrayList();
     private static Map<String, Integer> skillIDMap = new HashMap<String, Integer>();
     private static EISkill              newSkill   = new EISkill("error", 0);
 
@@ -51,6 +52,7 @@ public class EISkill {
     }
 
     private EISkill(String skillName, double modifier) {
+        this.skillEnabled = true;
         this.skillName = skillName;
         this.minLevel = 0;
         this.modifier = modifier;
@@ -91,5 +93,24 @@ public class EISkill {
 
     public static int getSkillAmount() {
         return skillList.size();
+    }
+
+    public double getModifier() {
+        return modifier;
+    }
+
+    public void setModifier(double newModifier) {
+        modifier = newModifier;
+    }
+
+    public boolean getEnabled() {
+        return skillEnabled;
+    }
+
+    /**
+     * @param boolean1
+     */
+    public void setEnabled(boolean newEnabled) {
+        skillEnabled = newEnabled;
     }
 }
