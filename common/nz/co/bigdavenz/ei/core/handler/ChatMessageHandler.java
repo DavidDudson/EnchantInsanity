@@ -4,17 +4,15 @@ import net.minecraft.util.ChatMessageComponent;
 import nz.co.bigdavenz.ei.lib.Reference;
 
 public class ChatMessageHandler {
-
-        
-    public static ChatMessageComponent chatMessage(String message){
-    	ChatMessageComponent chat = ChatMessageComponent.func_111066_d(message);
-    	return chat;
-    }
     
     public static void icommandsenderReply(ICommandSender player, String message){
-        
-    	player.sendChatToPlayer(chatMessage(message));
-
+    	player.sendChatToPlayer(createChatComponent(message));
+    }
+    
+    public static ChatMessageComponent createChatComponent(String message){
+    	ChatMessageComponent Component = new ChatMessageComponent();
+    	Component.addText(message);
+    	return Component;
     }
 
 }

@@ -31,7 +31,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
- * Enchant Insantiy
+ * Enchant Insanity
  * 
  * Created by BigDaveNz
  * 

@@ -1,5 +1,9 @@
 package nz.co.bigdavenz.ei.enchant;
 
+import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
+import nz.co.bigdavenz.ei.debug.DebugMessage;
+import nz.co.bigdavenz.ei.debug.DebugType;
+
 public class Enchant {
 
     private Object name;
@@ -12,6 +16,7 @@ public class Enchant {
     private double modifier;
 
     public static void init() {
+    	EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Enchantments Initialized",DebugType.ENCHANTMENT));
     }
 
     // Enchant constructor

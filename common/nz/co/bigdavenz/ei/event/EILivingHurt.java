@@ -15,6 +15,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
+import nz.co.bigdavenz.ei.debug.DebugMessage;
+import nz.co.bigdavenz.ei.debug.DebugType;
 import nz.co.bigdavenz.ei.lib.XPModifiers;
 
 /**
@@ -33,7 +35,7 @@ public class EILivingHurt {
             EntityPlayer player = (EntityPlayer) event.entityLiving;
             String username = player.getEntityName();
             String damageType = damageSource.getDamageType();
-            EIDebugHandler.sendDebugInfoToConsole("Player: " + username + " Was hurt by: " + damageType + ". Amount: " + amount);
+            EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Player: " + username + " Was hurt by: " + damageType + ". Amount: " + amount, DebugType.TRACKING));
 
             switch (damageType) {
 

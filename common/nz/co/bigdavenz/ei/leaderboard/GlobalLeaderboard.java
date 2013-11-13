@@ -8,10 +8,11 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Map;
 
-
 import net.minecraft.entity.player.EntityPlayer;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
 import nz.co.bigdavenz.ei.core.handler.FileHandler;
+import nz.co.bigdavenz.ei.debug.DebugMessage;
+import nz.co.bigdavenz.ei.debug.DebugType;
 import nz.co.bigdavenz.ei.player.EIPlayer;
 import nz.co.bigdavenz.ei.skill.EISkill;
 
@@ -21,31 +22,27 @@ import nz.co.bigdavenz.ei.skill.EISkill;
  */
 public class GlobalLeaderboard {
 
-    public static int globalLeaderboard[][] = new int[EIPlayer.getPlayerAmount()][EISkill.getSkillAmount()];
+	public static int globalLeaderboard[][] = new int[EIPlayer
+			.getPlayerAmount()][EISkill.getSkillAmount()];
 
-    public static boolean loadLeaderboard() {
-        FileHandler.loadLeaderboard();
-        EIDebugHandler.sendDebugInfoToConsole("leaderboard succesfully loaded");
-        if (!(GlobalLeaderboard.globalLeaderboard[1][2] == -1)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+	public static void loadLeaderboard() {
+		FileHandler.loadLeaderboard();
+		EIDebugHandler.sendDebugInfoToConsole(new DebugMessage(
+				"leaderboard succesfully loaded", DebugType.LEADERBOARD));
+	}
 
-    public static void saveLeaderboard() {
+	public static void saveLeaderboard() {
         FileHandler.saveLeaderboard();
-        EIDebugHandler.sendDebugInfoToConsole("leaderboard saved");
+        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("leaderboard saved", DebugType.LEADERBOARD));
     }
 
-    public static void populateLeaderboard() {
-        for (int i = 0; i < EIPlayer.getPlayerAmount(); i++) {
-            for (int j = 0; i < EISkill.getSkillAmount(); j++) {
+	public static void populateLeaderboard() {
+		for (int i = 0; i < EIPlayer.getPlayerAmount(); i++) {
+			for (int j = 0; i < EISkill.getSkillAmount(); j++) {
 
-                globalLeaderboard[i][j] = -1;
-                
-            }
-        }
-    }
+				globalLeaderboard[i][j] = -1;
+
+			}
+		}
+	}
 }

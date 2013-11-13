@@ -25,7 +25,7 @@ public class EISkill {
     private int                         currentXp  = 0;
     private int                         id         = -1;
     private boolean                     skillEnabled;
-    private static int                  nextId     = -1;
+    private static int                  nextId     = -2;
     public static ArrayList<EISkill>    skillList  = new ArrayList();
     private static Map<String, Integer> skillIDMap = new HashMap<String, Integer>();
     private static EISkill              newSkill   = new EISkill("error", 0);
@@ -66,7 +66,6 @@ public class EISkill {
             newSkill = new EISkill(skillName, modifier);
             skillList.add(newSkill.id, newSkill);
             skillIDMap.put(newSkill.skillName, newSkill.id);
-            EIDebugHandler.sendDebugInfoToConsole("New Skill: " + skillName + " with ID: " + newSkill.getId());
         }
         return newSkill;
     }

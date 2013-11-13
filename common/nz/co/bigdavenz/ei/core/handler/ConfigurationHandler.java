@@ -8,6 +8,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
+import nz.co.bigdavenz.ei.debug.DebugMessage;
+import nz.co.bigdavenz.ei.debug.DebugType;
 import nz.co.bigdavenz.ei.lib.ConfigRef;
 import nz.co.bigdavenz.ei.skill.EISkill;
 
@@ -31,5 +33,6 @@ public class ConfigurationHandler {
         configuration.addCustomCategoryComment(ConfigRef.CATEGORY_SKILLS_MODIFIERS, "Allows you disable a certain skill");
         
         configuration.save();
+        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Config's Initialized", DebugType.CONFIGURATION));
     }
 }

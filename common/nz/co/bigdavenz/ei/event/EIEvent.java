@@ -1,5 +1,6 @@
 package nz.co.bigdavenz.ei.event;
 
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -22,6 +23,8 @@ import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
 import nz.co.bigdavenz.ei.core.util.EILogger;
+import nz.co.bigdavenz.ei.debug.DebugMessage;
+import nz.co.bigdavenz.ei.debug.DebugType;
 import nz.co.bigdavenz.ei.leaderboard.GlobalLeaderboard;
 import nz.co.bigdavenz.ei.lib.Reference;
 import nz.co.bigdavenz.ei.player.EIPlayer;
@@ -35,8 +38,7 @@ public class EIEvent {
 
     public static void onPlayerLogout(EntityPlayer player) {
 
-        String playerName = player.getEntityName();
-        EIDebugHandler.sendDebugInfoToConsole(playerName + "logged out and EI info is unloaded");
+        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage(player.getEntityName() + "logged out and EI info is unloaded", DebugType.EVENT));
     }
 
     @ForgeSubscribe
