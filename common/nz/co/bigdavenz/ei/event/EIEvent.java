@@ -43,8 +43,8 @@ public class EIEvent {
 
     @ForgeSubscribe
     public void EntityEvent(EntityConstructing event) {
-        if (event.entity instanceof EntityPlayer) {
-            EIPlayer.createEIPlayer((EntityPlayer) event.entity);
+        if (event.entity instanceof EntityPlayerMP) {
+            EIPlayer.createEIPlayer((EntityPlayerMP) event.entity);
         }
     }
 

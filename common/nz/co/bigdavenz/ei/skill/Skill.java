@@ -9,8 +9,8 @@ public class Skill {
 
     public static void init() {
 
-        EISkill Care = EISkill.createNewSkill(" Care", SkillModifiers.SKILL_TOOLCARE_MODIFIER);
-        EISkill efficiency = EISkill.createNewSkill("Efficeincy", SkillModifiers.SKILL_EFFICIENCY_MODIFIER);
+        EISkill Care = EISkill.createNewSkill("ToolCare", SkillModifiers.SKILL_TOOLCARE_MODIFIER);
+        EISkill efficiency = EISkill.createNewSkill("Efficiency", SkillModifiers.SKILL_EFFICIENCY_MODIFIER);
         EISkill excavation = EISkill.createNewSkill("Excavation", SkillModifiers.SKILL_EXCAVATION_MODIFIER);
         EISkill mining = EISkill.createNewSkill("Mining", SkillModifiers.SKILL_MINING_MODIFIER);
         EISkill luck = EISkill.createNewSkill("Luck", SkillModifiers.SKILL_LUCK_MODIFIER);
@@ -32,12 +32,12 @@ public class Skill {
 
         EISkill sword = EISkill.createNewSkill("Swordsmanship", SkillModifiers.SKILL_SWORD_MODIFIER);
         EISkill battleaxe = EISkill.createNewSkill("Axemanship", SkillModifiers.SKILL_BATTLEAXE_MODIFIER);
-        EISkill bow = EISkill.createNewSkill("Bowmanship", SkillModifiers.SKILL_BOW_MODIFIER);
-        EISkill fist = EISkill.createNewSkill("Martial Arts", SkillModifiers.SKILL_FIST_MODIFIER);
+        EISkill bow = EISkill.createNewSkill("Archery", SkillModifiers.SKILL_BOW_MODIFIER);
+        EISkill fist = EISkill.createNewSkill("MartialArts", SkillModifiers.SKILL_FIST_MODIFIER);
 
-        EISkill light = EISkill.createNewSkill("Light ", SkillModifiers.SKILL_LIGHTARMOUR_MODIFIER);
-        EISkill heavy = EISkill.createNewSkill("Heavy ", SkillModifiers.SKILL_HEAVYARMOUR_MODIFIER);
-        EISkill uned = EISkill.createNewSkill("Uned", SkillModifiers.SKILL_UNARMOURED_MODIFIER);
+        EISkill light = EISkill.createNewSkill("LightArmour", SkillModifiers.SKILL_LIGHTARMOUR_MODIFIER);
+        EISkill heavy = EISkill.createNewSkill("HeavyArmour", SkillModifiers.SKILL_HEAVYARMOUR_MODIFIER);
+        EISkill uned = EISkill.createNewSkill("Unarmoured", SkillModifiers.SKILL_UNARMOURED_MODIFIER);
 
         EISkill skeleton = EISkill.createNewSkill("Skeleton", SkillModifiers.SKILL_SKELETON_MODIFIER);
         EISkill zombie = EISkill.createNewSkill("Zombie", SkillModifiers.SKILL_ZOMBIE_MODIFIER);
@@ -60,7 +60,7 @@ public class Skill {
         EISkill golem = EISkill.createNewSkill("Golem", SkillModifiers.SKILL_GOLEM_MODIFIER);
         EISkill npc = EISkill.createNewSkill("NPC", SkillModifiers.SKILL_NPC_MODIFIER);
         
-        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Skills Initialized",DebugType.SKILL));
+        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Skills Initialized - " + "Disabled Count: " + EISkill.amountDisabled()  ,DebugType.SKILL));
 
     }
 }

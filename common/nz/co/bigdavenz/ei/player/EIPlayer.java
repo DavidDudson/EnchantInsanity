@@ -6,6 +6,7 @@ import java.util.Map;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.world.World;
@@ -36,17 +37,17 @@ public class EIPlayer implements IExtendedEntityProperties {
 		return null;
 	}
 
-	public static void createEIPlayer(EntityPlayer player) {
+	public static void createEIPlayer(EntityPlayerMP player) {
 		// player.registerExtendedProperties("EI Player Properties",
 		// createPlayerData());
-		String playerName = player.username;
+		String playerName = player.getClass().toString();
 		if (!EIPlayer.players.contains(playerName)) {
 			String message = "Welcome to Enchant Insanity!\n Version is: " + Reference.MOD_VERSION;
 			//player.sendChatToPlayer(ChatMessageHandler.createChatComponent(message));
-			player.addChatMessage(message);
+			//player.addChatMessage(message);
 			players.add(playerName);
 			
-		EIDebugHandler.sendDebugInfoToConsole(new DebugMessage(playerName + "Has been setup for Enchant Insanity", DebugType.EVENT));
+		EIDebugHandler.sendDebugInfoToConsole(new DebugMessage(playerName + " has been setup for Enchant Insanity", DebugType.EVENT));
 		}
 	}
 

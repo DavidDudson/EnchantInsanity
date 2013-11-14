@@ -4,7 +4,7 @@
 package nz.co.bigdavenz.ei;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import nz.co.bigdavenz.ei.core.handler.ConfigurationHandler;
+import nz.co.bigdavenz.ei.config.ConfigurationHandler;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
 import nz.co.bigdavenz.ei.core.handler.EIEventHandler;
 import nz.co.bigdavenz.ei.core.handler.TickHandler;
@@ -50,7 +50,6 @@ public class Load {
     }
 
     public static void load(FMLPreInitializationEvent event) {
-        ConfigurationHandler.init(event);
 
         EILogger.init();
         
@@ -61,6 +60,8 @@ public class Load {
         Enchant.init();
 
         Skill.init();
+        
+        ConfigurationHandler.init(event);
         
         EIEventHandler.init();
 

@@ -84,6 +84,16 @@ public class EISkill {
         Map map = new HashMap(skillIDMap);
         return map;
     }
+    
+    public static int amountDisabled(){
+    	int counter = 0;
+    	for (EISkill skill : skillList){
+    		if (!skill.getEnabled()){
+    			counter++;
+    		}
+    	}
+    	return counter;
+    }
 
     public static void addXpToSkill(String skillName, String playerName, int amount) {
         // ;
