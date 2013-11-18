@@ -29,25 +29,37 @@ public class EIPlayer implements IExtendedEntityProperties {
 		return players.size();
 	}
 
-	public static IExtendedEntityProperties createPlayerData() {
-		Map skillMapByName = EISkill.cloneSkillsMap();
-		NBTTagCompound eiNBT = new NBTTagCompound();
-		eiNBT.setTag("eiSkillData", eiNBT);
-		eiNBT.setTag("eiData", eiNBT);
-		return null;
+	public static IExtendedEntityProperties createPlayerData(EntityPlayer player) {
+		IExtendedEntityProperties EIProperties = null;
+		if (player.getExtendedProperties("EI") == null) {
+			Map skillMapByName = EISkill.cloneSkillsMap();
+			NBTTagCompound eiNBT = new NBTTagCompound();
+			eiNBT.setTag("eiSkillData", eiNBT);
+			eiNBT.setTag("eiEnchantmentData", eiNBT);
+			eiNBT.setTag("eiAbilityData", eiNBT);
+		}
+		EIProperties = player.getExtendedProperties("EI");
+		return EIProperties;
 	}
 
 	public static void createEIPlayer(EntityPlayerMP player) {
-		// player.registerExtendedProperties("EI Player Properties",
-		// createPlayerData());
-		String playerName = player.getClass().toString();
-		if (!EIPlayer.players.contains(playerName)) {
-			String message = "Welcome to Enchant Insanity!\n Version is: " + Reference.MOD_VERSION;
-			//player.sendChatToPlayer(ChatMessageHandler.createChatComponent(message));
-			//player.addChatMessage(message);
-			players.add(playerName);
-			
-		EIDebugHandler.sendDebugInfoToConsole(new DebugMessage(playerName + " has been setup for Enchant Insanity", DebugType.EVENT));
+		// createPlayerData(player);
+		if (player.getEntityName() != null) {
+			String playerName = player.getEntityName();
+			if (!EIPlayer.players.contains(playerName)) {
+				String message = "Welcome to Enchant Insanity!\n Version is: "
+						+ Reference.MOD_VERSION;
+				// player.sendChatToPlayer(ChatMessageHandler.createChatComponent(message));
+				players.add(playerName);
+
+				EIDebugHandler.sendDebugInfoToConsole(new DebugMessage(
+						playerName + " has been setup for Enchant Insanity",
+						DebugType.EVENT));
+				player.addChatMessage(message);
+			}
+			else{
+				EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Null Player found",DebugType.EVENT));
+			}
 		}
 	}
 

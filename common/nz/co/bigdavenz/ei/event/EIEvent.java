@@ -29,12 +29,17 @@ import nz.co.bigdavenz.ei.leaderboard.GlobalLeaderboard;
 import nz.co.bigdavenz.ei.lib.Reference;
 import nz.co.bigdavenz.ei.player.EIPlayer;
 import nz.co.bigdavenz.ei.skill.Skill;
+import nz.co.bigdavenz.ei.skill.SkillEventHandler;
 
 /**
  * @author BigDaveNz
  * 
  */
 public class EIEvent {
+
+    public static void onPlayerLogin(EntityPlayer player) {
+        player.addChatMessage("Logged In!");
+    }
 
     public static void onPlayerLogout(EntityPlayer player) {
 
@@ -49,46 +54,62 @@ public class EIEvent {
     }
 
     @ForgeSubscribe
-    public void EntityUpdate(LivingEvent event) {}
-
-    @ForgeSubscribe
-    public void LivingJumpEvent(LivingEvent event) {}
-
-    @ForgeSubscribe
-    public void onPlayerJoinWorld(EntityJoinWorldEvent event) {}
-
-    @ForgeSubscribe
-    public void onLivingAttack(LivingAttackEvent event) {}
-
-    @ForgeSubscribe
-    public void onLivingDeath(LivingDeathEvent event) {}
-
-    @ForgeSubscribe
-    public void onLivingHurt(LivingHurtEvent event) {
-        EILivingHurt.process(event);
+    public void EntityUpdate(LivingEvent event) {
     }
 
     @ForgeSubscribe
-    public void onLivingFall(LivingFallEvent event) {}
+    public void LivingJumpEvent(LivingEvent event) {
+        if (event.entityLiving instanceof EntityPlayerMP) {SkillEventHandler.processLivingJumpEvent((LivingEvent.LivingJumpEvent) event);
+        }
+    }
 
     @ForgeSubscribe
-    public void onArrowLoose(ArrowLooseEvent event) {}
+    public void onPlayerJoinWorld(EntityJoinWorldEvent event) {
+    }
 
     @ForgeSubscribe
-    public void onAttackEntity(AttackEntityEvent event) {}
+    public void onLivingAttack(LivingAttackEvent event) {
+
+    }
 
     @ForgeSubscribe
-    public void onBoneMeal(BonemealEvent event) {}
+    public void onLivingDeath(LivingDeathEvent event) {
+    }
 
     @ForgeSubscribe
-    public void onFillBucket(FillBucketEvent event) {}
+    public void onLivingHurt(LivingHurtEvent event) {
+        SkillEventHandler.processLivingHurtEvent(event);
+    }
 
     @ForgeSubscribe
-    public void onPlayerInteract(PlayerInteractEvent event) {}
+    public void onLivingFall(LivingFallEvent event) {
+    }
 
     @ForgeSubscribe
-    public void onPlayerSleep(PlayerSleepInBedEvent event) {}
+    public void onArrowLoose(ArrowLooseEvent event) {
+    }
 
     @ForgeSubscribe
-    public void onUseHoe(UseHoeEvent event) {}
+    public void onAttackEntity(AttackEntityEvent event) {
+    }
+
+    @ForgeSubscribe
+    public void onBoneMeal(BonemealEvent event) {
+    }
+
+    @ForgeSubscribe
+    public void onFillBucket(FillBucketEvent event) {
+    }
+
+    @ForgeSubscribe
+    public void onPlayerInteract(PlayerInteractEvent event) {
+    }
+
+    @ForgeSubscribe
+    public void onPlayerSleep(PlayerSleepInBedEvent event) {
+    }
+
+    @ForgeSubscribe
+    public void onUseHoe(UseHoeEvent event) {
+    }
 }
