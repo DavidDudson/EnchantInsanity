@@ -8,9 +8,10 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 
 public class GUI {
 
-	public static void init(){
-		NetworkRegistry.instance().registerGuiHandler(EnchantInsanity.instance, EnchantInsanity.instance.proxy);
-		EnchantInsanity instance = EnchantInsanity.instance;
-		EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("GUI's Initailized", DebugType.GUI));
-	}
+    public static void init() {
+        NetworkRegistry.instance().registerGuiHandler(EnchantInsanity.instance, EnchantInsanity.instance.proxy);
+        EnchantInsanity instance = EnchantInsanity.instance;
+        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("GUI's Initailized", DebugType.GUI));
+    }
+
 }

@@ -59,8 +59,8 @@ public class Skill {
         EISkill ocelot = EISkill.createNewSkill("Ocelot", SkillModifiers.SKILL_OCELOT_MODIFIER);
         EISkill golem = EISkill.createNewSkill("Golem", SkillModifiers.SKILL_GOLEM_MODIFIER);
         EISkill npc = EISkill.createNewSkill("NPC", SkillModifiers.SKILL_NPC_MODIFIER);
-        
-        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Skills Initialized - " + "Disabled Count: " + EISkill.amountDisabled()  ,DebugType.SKILL));
+
+        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Skills Initialized - " + "Disabled Count: " + EISkill.amountDisabled(), DebugType.SKILL));
 
     }
 }

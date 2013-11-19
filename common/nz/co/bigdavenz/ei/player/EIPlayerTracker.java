@@ -8,6 +8,7 @@ public class EIPlayerTracker implements IPlayerTracker{
 
     @Override
     public void onPlayerLogin(EntityPlayer player) {
+        EIEvent.onPlayerLogin(player);
     }
 
     @Override

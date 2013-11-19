@@ -10,9 +10,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import nz.co.bigdavenz.ei.core.util.EILogger;
 import nz.co.bigdavenz.ei.leaderboard.GlobalLeaderboard;
-
+import nz.co.bigdavenz.ei.logger.VanillaEILogger;
 
 /**
  * @author BigDaveNz
@@ -27,12 +26,10 @@ public class FileHandler {
             out.writeObject(GlobalLeaderboard.globalLeaderboard);
             out.close();
             fileOut.close();
-        }
-        catch (FileNotFoundException e) {
-            EILogger.warning("EI save file not found for this world, creating new file now");
+        } catch (FileNotFoundException e) {
+            VanillaEILogger.warning("EI save file not found for this world, creating new file now");
             createLeaderboardFile();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -46,8 +43,7 @@ public class FileHandler {
             out.writeObject(GlobalLeaderboard.globalLeaderboard);
             out.close();
             fileOut.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -59,8 +55,7 @@ public class FileHandler {
             out.writeObject(GlobalLeaderboard.globalLeaderboard);
             out.close();
             fileOut.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -73,12 +68,10 @@ public class FileHandler {
             GlobalLeaderboard.globalLeaderboard = (int[][]) in.readObject();
             in.close();
             fileIn.close();
-        }
-        catch (IOException i) {
+        } catch (IOException i) {
             i.printStackTrace();
             return;
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return;
         }

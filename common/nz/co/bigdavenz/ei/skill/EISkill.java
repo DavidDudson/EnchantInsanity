@@ -5,11 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
-import nz.co.bigdavenz.ei.core.util.EILogger;
-import nz.co.bigdavenz.ei.leaderboard.GlobalLeaderboard;
-import nz.co.bigdavenz.ei.lib.SkillModifiers;
+import nz.co.bigdavenz.ei.debug.DebugMessage;
+import nz.co.bigdavenz.ei.debug.DebugType;
+import nz.co.bigdavenz.ei.lib.Reference;
+import nz.co.bigdavenz.ei.player.EIPlayerProperties;
 
 /**
  * @author BigDaveNz
@@ -19,7 +20,7 @@ import nz.co.bigdavenz.ei.lib.SkillModifiers;
 public class EISkill {
 
     private String                      skillName  = "error";
-    private int                         currentLevel;
+    private final int                   currentLevel;
     private int                         minLevel   = 0;
     private double                      modifier   = 1;
     private int                         currentXp  = 0;
@@ -74,8 +75,7 @@ public class EISkill {
         EISkill requestedSkill = skillList.get(EISkill.skillIDMap.get(name));
         if (requestedSkill == null) {
             throw new WrongUsageException("Invalid Skill requested", new Object[0]);
-        }
-        else {
+        } else {
             return requestedSkill;
         }
     }
@@ -84,20 +84,22 @@ public class EISkill {
         Map map = new HashMap(skillIDMap);
         return map;
     }
-    
-    public static int amountDisabled(){
-    	int counter = 0;
-    	for (EISkill skill : skillList){
-    		if (!skill.getEnabled()){
-    			counter++;
-    		}
-    	}
-    	return counter;
+
+    public static int amountDisabled() {
+        int counter = 0;
+        for (EISkill skill : skillList) {
+            if (!skill.getEnabled()) {
+                counter++;
+            }
+        }
+        return counter;
     }
 
-    public static void addXpToSkill(String skillName, String playerName, int amount) {
-        // ;
-        // skill.currentXp += amount;
+    public static void addXpToSkill(String skillName, EntityPlayerMP player, int xpGain) {
+        EIPlayerProperties props = (EIPlayerProperties) player.getExtendedProperties(Reference.MOD_NAME);
+        props.addSkillXP(skillName, xpGain);
+        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Skill XPGain - Player: " + player.getEntityName() + " Skill: " + skillName + " XP Gain: " + xpGain, DebugType.SKILL));
+
     }
 
     public static int getSkillAmount() {

@@ -1,10 +1,8 @@
 package nz.co.bigdavenz.ei.event;
 
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -16,19 +14,16 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
-import nz.co.bigdavenz.ei.core.util.EILogger;
 import nz.co.bigdavenz.ei.debug.DebugMessage;
 import nz.co.bigdavenz.ei.debug.DebugType;
-import nz.co.bigdavenz.ei.leaderboard.GlobalLeaderboard;
+import nz.co.bigdavenz.ei.hud.EIHUDHandler;
 import nz.co.bigdavenz.ei.lib.Reference;
-import nz.co.bigdavenz.ei.player.EIPlayer;
-import nz.co.bigdavenz.ei.skill.Skill;
+import nz.co.bigdavenz.ei.player.EIPlayerProperties;
 import nz.co.bigdavenz.ei.skill.SkillEventHandler;
 
 /**
@@ -38,7 +33,7 @@ import nz.co.bigdavenz.ei.skill.SkillEventHandler;
 public class EIEvent {
 
     public static void onPlayerLogin(EntityPlayer player) {
-        player.addChatMessage("Logged In!");
+        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage(player.getEntityName() + " logged In!", DebugType.EVENT));
     }
 
     public static void onPlayerLogout(EntityPlayer player) {
@@ -47,9 +42,10 @@ public class EIEvent {
     }
 
     @ForgeSubscribe
-    public void EntityEvent(EntityConstructing event) {
+    public void onEntityConstruct(EntityConstructing event) {
         if (event.entity instanceof EntityPlayerMP) {
-            EIPlayer.createEIPlayer((EntityPlayerMP) event.entity);
+            EntityPlayerMP player = (EntityPlayerMP) event.entity;
+            player.registerExtendedProperties(Reference.MOD_NAME, new EIPlayerProperties());
         }
     }
 
@@ -59,8 +55,9 @@ public class EIEvent {
 
     @ForgeSubscribe
     public void LivingJumpEvent(LivingEvent event) {
-        if (event.entityLiving instanceof EntityPlayerMP) {SkillEventHandler.processLivingJumpEvent((LivingEvent.LivingJumpEvent) event);
-        }
+        // if (event.entityLiving instanceof EntityPlayerMP) {
+        // SkillEventHandler.processLivingJumpEvent((net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent) event);
+        // }
     }
 
     @ForgeSubscribe
@@ -112,4 +109,12 @@ public class EIEvent {
     @ForgeSubscribe
     public void onUseHoe(UseHoeEvent event) {
     }
+
+    @ForgeSubscribe
+    public void onRenderGameOverlay(RenderGameOverlayEvent event) {
+        if (EIHUDHandler.overrideVanillaHUD) {
+            event.setCanceled(true);
+        }
+    }
+
 }

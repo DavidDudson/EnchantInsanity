@@ -3,12 +3,11 @@
  */
 package nz.co.bigdavenz.ei;
 
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import nz.co.bigdavenz.ei.config.ConfigurationHandler;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
 import nz.co.bigdavenz.ei.core.handler.EIEventHandler;
 import nz.co.bigdavenz.ei.core.handler.TickHandler;
-import nz.co.bigdavenz.ei.core.util.EILogger;
+import nz.co.bigdavenz.ei.core.util.UsefulFunctions;
 import nz.co.bigdavenz.ei.debug.DebugMessage;
 import nz.co.bigdavenz.ei.debug.DebugType;
 import nz.co.bigdavenz.ei.enchant.Enchant;
@@ -16,8 +15,10 @@ import nz.co.bigdavenz.ei.gui.GUI;
 import nz.co.bigdavenz.ei.item.ModItems;
 import nz.co.bigdavenz.ei.keybind.KeyBind;
 import nz.co.bigdavenz.ei.lib.Reference;
+import nz.co.bigdavenz.ei.logger.VanillaEILogger;
 import nz.co.bigdavenz.ei.skill.Skill;
 import nz.co.bigdavenz.ei.update.Updater;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * @author BigDaveNz
@@ -30,17 +31,17 @@ public class Load {
     public static void loadEI(FMLPreInitializationEvent event) {
         EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("EI Loading...", DebugType.SERVER));
         if (!(Reference.MOD_VERSION == previousVersion)) {
-            
-            EILogger.info("EI Found that an update is necissary, old save is version: " + Reference.MOD_VERSION);
+
+            VanillaEILogger.info("EI Found that an update is necissary, old save is version: " + Reference.MOD_VERSION);
             // TODO create version in data save
             switch (previousVersion) {
 
                 case "0.0.1":
                     Updater.serverUpdate("0.0.1");
-                    
+
                 default:
                     load(event);
-            }    
+            }
         }
 
         else {
@@ -51,22 +52,25 @@ public class Load {
 
     public static void load(FMLPreInitializationEvent event) {
 
-        EILogger.init();
-        
+        VanillaEILogger.init();
+
         TickHandler.init();
-        
+
         ModItems.init();
 
         Enchant.init();
 
         Skill.init();
-        
+
         ConfigurationHandler.init(event);
-        
+
         EIEventHandler.init();
 
-        GUI.init();
-        
-        KeyBind.init();
+        if (!UsefulFunctions.isServer()) {
+
+            GUI.init();
+
+            KeyBind.init();
+        }
     }
 }

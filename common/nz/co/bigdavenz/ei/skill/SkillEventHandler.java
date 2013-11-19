@@ -1,11 +1,8 @@
 package nz.co.bigdavenz.ei.skill;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -68,6 +65,19 @@ public class SkillEventHandler {
 
             }
             EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Player: " + skillEvent.getPlayerName() + " Was hurt by: " + damageType + ". Amount: " + amount + ". XP Gain: " + xpGain, DebugType.TRACKING));
+
+            String skillName = "Error";
+            int armour = skillEvent.player.getTotalArmorValue();
+
+            if (armour > 5) {
+                skillName = "HeavyArmour";
+            } else if (armour < 5 && armour != 0) {
+                skillName = "LightArmour";
+            } else {
+                skillName = "Unarmoured";
+            }
+
+            EISkill.addXpToSkill(skillName, skillEvent.player, xpGain);
         }
     }
 
@@ -79,12 +89,12 @@ public class SkillEventHandler {
         EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Player: " + playerName + "Jumped. XP Gain: " + xpGain, DebugType.TRACKING));
     }
 
-    public static void processLivingAttackEvent(AttackEntityEvent event){
-        
-        if(event.entity instanceof EntityPlayerMP){
+    public static void processLivingAttackEvent(AttackEntityEvent event) {
+
+        if (event.entity instanceof EntityPlayerMP) {
             SkillLivingEvent attackerEvent = new SkillLivingEvent(event, EIEventType.PLAYER_ATTACK);
         }
-        if(event.target instanceof EntityPlayerMP){
+        if (event.target instanceof EntityPlayerMP) {
             SkillLivingEvent defenderEvent = new SkillLivingEvent(event, EIEventType.PLAYER_DEFEND);
         }
     }
