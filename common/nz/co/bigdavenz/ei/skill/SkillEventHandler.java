@@ -14,6 +14,11 @@ import nz.co.bigdavenz.ei.lib.XPModifiers;
 
 public class SkillEventHandler {
 
+    /**
+     * Add Xp to the appropriate skill for armour type. Depending on the total armour rating of the player.
+     * 
+     * @param event
+     */
     public static void processLivingHurtEvent(LivingHurtEvent event) {
         int xpGain = 0;
         if (event.entityLiving instanceof EntityPlayerMP) {
@@ -81,6 +86,11 @@ public class SkillEventHandler {
         }
     }
 
+    /**
+     * adds xp to the jump skill for an entity if it is a player
+     * 
+     * @param event
+     */
     public static void processLivingJumpEvent(LivingJumpEvent event) {
         EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
         String playerName = player.getEntityName();
@@ -89,6 +99,11 @@ public class SkillEventHandler {
         EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Player: " + playerName + "Jumped. XP Gain: " + xpGain, DebugType.TRACKING));
     }
 
+    /**
+     * Refers the even to the appropriate method dependant on whether or not the player is attacking or defending.
+     * 
+     * @param event
+     */
     public static void processLivingAttackEvent(AttackEntityEvent event) {
 
         if (event.entity instanceof EntityPlayerMP) {

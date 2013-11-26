@@ -3,7 +3,7 @@ package nz.co.bigdavenz.ei.tick;
 import java.util.EnumSet;
 
 import net.minecraft.entity.player.EntityPlayer;
-import nz.co.bigdavenz.ei.keybind.KeyBind;
+import nz.co.bigdavenz.ei.client.keybind.KeyBind;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 

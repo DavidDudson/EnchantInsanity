@@ -20,4 +20,10 @@ public class Reference {
     public static final String CHANNEL_NAME       = "ei";
 
     public static boolean      debugMode          = true;
+
+    public static final String BLOCK_TEXTURE_DIR  = "/assests/enchantinsanity/textures/blocks/";
+    public static final String ITEM_TEXTURE_DIR   = "/assests/enchantinsanity/textures/items/";
+    public static final String ANIMATION_DIR      = "/assests/enchantinsanity/animations";
+    public static final String SOUND_DIR          = "/assests/enchantinsanity/sounds/";
+
 }

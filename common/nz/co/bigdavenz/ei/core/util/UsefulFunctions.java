@@ -1,5 +1,6 @@
 package nz.co.bigdavenz.ei.core.util;
 
+import nz.co.bigdavenz.ei.lib.Reference;
 import nz.co.bigdavenz.ei.logger.VanillaEILogger;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -17,6 +18,10 @@ public class UsefulFunctions {
         }
         return null;
 
+    }
+
+    public static String getBlockTextureLocation(String fileName) {
+        return Reference.BLOCK_TEXTURE_DIR + fileName + ".png";
     }
 
 }

@@ -3,17 +3,20 @@
  */
 package nz.co.bigdavenz.ei;
 
+import nz.co.bigdavenz.ei.block.EIBlock;
+import nz.co.bigdavenz.ei.client.gui.GUI;
+import nz.co.bigdavenz.ei.client.keybind.KeyBind;
 import nz.co.bigdavenz.ei.config.ConfigurationHandler;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
 import nz.co.bigdavenz.ei.core.handler.EIEventHandler;
 import nz.co.bigdavenz.ei.core.handler.TickHandler;
+import nz.co.bigdavenz.ei.core.registry.EIGameRegistry;
+import nz.co.bigdavenz.ei.core.registry.EILanguageRegistry;
 import nz.co.bigdavenz.ei.core.util.UsefulFunctions;
 import nz.co.bigdavenz.ei.debug.DebugMessage;
 import nz.co.bigdavenz.ei.debug.DebugType;
 import nz.co.bigdavenz.ei.enchant.Enchant;
-import nz.co.bigdavenz.ei.gui.GUI;
 import nz.co.bigdavenz.ei.item.ModItems;
-import nz.co.bigdavenz.ei.keybind.KeyBind;
 import nz.co.bigdavenz.ei.lib.Reference;
 import nz.co.bigdavenz.ei.logger.VanillaEILogger;
 import nz.co.bigdavenz.ei.skill.Skill;
@@ -33,7 +36,6 @@ public class Load {
         if (!(Reference.MOD_VERSION == previousVersion)) {
 
             VanillaEILogger.info("EI Found that an update is necissary, old save is version: " + Reference.MOD_VERSION);
-            // TODO create version in data save
             switch (previousVersion) {
 
                 case "0.0.1":
@@ -58,6 +60,8 @@ public class Load {
 
         ModItems.init();
 
+        EIBlock.init();
+
         Enchant.init();
 
         Skill.init();
@@ -65,6 +69,10 @@ public class Load {
         ConfigurationHandler.init(event);
 
         EIEventHandler.init();
+
+        EIGameRegistry.init();
+
+        EILanguageRegistry.init();
 
         if (!UsefulFunctions.isServer()) {
 
