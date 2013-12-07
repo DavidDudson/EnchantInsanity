@@ -1,6 +1,8 @@
 package nz.co.bigdavenz.ei;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.oredict.OreDictionary;
 import nz.co.bigdavenz.ei.core.handler.CommandHandler;
 import nz.co.bigdavenz.ei.core.proxy.CommonProxy;
 import nz.co.bigdavenz.ei.creativetab.CreativeTabEI;

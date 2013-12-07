@@ -44,9 +44,6 @@ public class CommandEI extends CommandBase {
                     processXPCommand(commandSender, args);
                     break;
 
-                case "level":
-                    processLevelCommand(commandSender, args);
-                    break;
 
                 case "leaderboard":
                     processLeaderboardCommand(commandSender, args);
@@ -57,7 +54,7 @@ public class CommandEI extends CommandBase {
                     ChatMessageHandler.icommandsenderReply(commandSender, "Debug mode toggled to: " + Boolean.toString(Reference.debugMode));
                     break;
 
-                case "debuggcheck":
+                case "debugcheck":
                     ChatMessageHandler.icommandsenderReply(commandSender, "Debug mode is: " + Boolean.toString(Reference.debugMode));
                     break;
 
@@ -91,16 +88,10 @@ public class CommandEI extends CommandBase {
             throw new WrongUsageException(Commands.COMMAND_XP_USAGE, new Object[0]);
     }
 
-    public void processLevelCommand(ICommandSender commandSender, String[] args) {
-        if (args.length > 0) {
-            String skillName = args[0];
-            getIntMethodInSkill(skillName, "getLevel", commandSender);
-        } else
-            throw new WrongUsageException(Commands.COMMAND_LEVEL_USAGE, new Object[0]);
-    }
-
     public void processLeaderboardCommand(ICommandSender commandSender, String[] args) {
         // TODO finish leaderboard
+        String message = "Leaderboard Incomplete";
+        ChatMessageHandler.sendEIChatToPlayer(getCommandSenderAsPlayer(commandSender), message);
     }
 
     @Override
@@ -108,35 +99,8 @@ public class CommandEI extends CommandBase {
         return null;
     }
 
-    public void getIntMethodInSkill(String skillName, String methodName, ICommandSender commandSender) {
-        if (skillName.length() > 0) {
-            EISkill skill = EISkill.getSkillFromMap(skillName);
-            Method method = null;
-            try {
-                method = skill.getClass().getMethod(methodName, EISkill.class);
-            } catch (NoSuchMethodException | SecurityException e) {
-                e.printStackTrace();
-            }
-            int returnedValue = -1;
-
-            try {
-                returnedValue = (int) method.invoke(skill);
-            } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
-            String message;
-            if (returnedValue == -1) {
-                message = "Something Went Wrong";
-            } else {
-                switch (methodName) {
-
-                    case "getLevel":
-                        message = "Current: " + skillName + " Level: " + returnedValue;
-                    case "getXp":
-                        message = "Current: " + skillName + " Xp: " + returnedValue;
-
-                }
-            }
-        }
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

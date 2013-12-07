@@ -13,6 +13,7 @@ import nz.co.bigdavenz.ei.core.handler.TickHandler;
 import nz.co.bigdavenz.ei.core.registry.EIGameRegistry;
 import nz.co.bigdavenz.ei.core.registry.EILanguageRegistry;
 import nz.co.bigdavenz.ei.core.util.UsefulFunctions;
+import nz.co.bigdavenz.ei.crafting.EIRecipeHandler;
 import nz.co.bigdavenz.ei.debug.DebugMessage;
 import nz.co.bigdavenz.ei.debug.DebugType;
 import nz.co.bigdavenz.ei.enchant.Enchant;
@@ -33,23 +34,12 @@ public class Load {
 
     public static void loadEI(FMLPreInitializationEvent event) {
         EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("EI Loading...", DebugType.SERVER));
-        if (!(Reference.MOD_VERSION == previousVersion)) {
+        if (!(Reference.MOD_VERSION.equalsIgnoreCase(previousVersion))) {
 
-            VanillaEILogger.info("EI Found that an update is necissary, old save is version: " + Reference.MOD_VERSION);
-            switch (previousVersion) {
-
-                case "0.0.1":
-                    Updater.serverUpdate("0.0.1");
-
-                default:
-                    load(event);
-            }
+            VanillaEILogger.info("EI Found that an update is necessary, old save is version: " + Reference.MOD_VERSION);
+            Updater.serverUpdate(previousVersion) ;
         }
-
-        else {
-
-            load(event);
-        }
+        load(event);
     }
 
     public static void load(FMLPreInitializationEvent event) {
@@ -61,6 +51,8 @@ public class Load {
         ModItems.init();
 
         EIBlock.init();
+
+        EIRecipeHandler.init();
 
         Enchant.init();
 

@@ -6,6 +6,6 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class EILanguageRegistry {
 
     public static void init() {
-        LanguageRegistry.addName(EIBlock.eiTestBlock, "Generic Dirt");
+        LanguageRegistry.addName(EIBlock.eiTestBlock, "EI Test Block");
     }
 }

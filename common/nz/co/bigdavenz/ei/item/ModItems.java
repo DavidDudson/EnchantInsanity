@@ -11,7 +11,6 @@ public class ModItems {
     public static Item playerSkull;
 
     public static void init() {
-        playerSkull = new ItemPlayerSkull(ItemID.ID_CURRENT_PLAYERHEAD);
         EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Item's initialized",DebugType.ITEM));
     }
 

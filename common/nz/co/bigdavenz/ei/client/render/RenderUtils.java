@@ -1,6 +1,7 @@
 package nz.co.bigdavenz.ei.client.render;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -9,6 +10,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.GuiIngameForge;
+import nz.co.bigdavenz.ei.core.util.ImageResource;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -16,6 +20,8 @@ import cpw.mods.fml.client.FMLClientHandler;
 public class RenderUtils {
 
     private static int rotationAngle = 0;
+    public static Minecraft mc = Minecraft.getMinecraft();
+    public static GuiIngameForge gui = (GuiIngameForge) mc.ingameGUI;
 
     public static void renderRotatingBlockIntoGUI(FontRenderer fontRenderer, ItemStack stack, int x, int y, float zLevel, float scale) {
 
@@ -99,4 +105,6 @@ public class RenderUtils {
         tessellator.addVertexWithUV(x + 0, y + 0, zLevel, icon.getMinU(), icon.getMinV());
         tessellator.draw();
     }
+
+
 }

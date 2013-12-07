@@ -1,9 +1,11 @@
-package nz.co.bigdavenz.ei.client.hud;
+package nz.co.bigdavenz.ei.tick;
 
 import java.util.EnumSet;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.client.GuiIngameForge;
+import nz.co.bigdavenz.ei.client.hud.EIHUDHandler;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.IScheduledTickHandler;
@@ -36,10 +38,9 @@ public class EIHUDTickHandler implements IScheduledTickHandler {
             }
 
             if (mc.currentScreen == null && EIHUDHandler.overrideVanillaHUD && player != null) {
-                EIHUDHandler.drawHUD(mc);
+                EIHUDHandler.setupHUDRender();
             } else if (mc.currentScreen != null && EIHUDHandler.overrideVanillaHUD && player != null) {
                 EIHUDHandler.overrideVanillaHUD = false;
-                EIDebugHandler.tempDebugToConsole("resetting hud override");
                 EIHUDHandler.vanillaGUIOpen = true;
             }
         }

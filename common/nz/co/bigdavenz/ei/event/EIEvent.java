@@ -6,18 +6,8 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.ArrowLooseEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.event.entity.player.FillBucketEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
-import net.minecraftforge.event.entity.player.UseHoeEvent;
+import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.player.*;
 import nz.co.bigdavenz.ei.client.hud.EIHUDHandler;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
 import nz.co.bigdavenz.ei.debug.DebugMessage;
@@ -28,7 +18,6 @@ import nz.co.bigdavenz.ei.skill.SkillEventHandler;
 
 /**
  * @author BigDaveNz
- * 
  */
 public class EIEvent {
 
@@ -112,9 +101,10 @@ public class EIEvent {
 
     @ForgeSubscribe
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
+
         if (EIHUDHandler.overrideVanillaHUD) {
             event.setCanceled(true);
+            EIHUDHandler.setupHUDRender();
         }
     }
-
 }
