@@ -3,6 +3,8 @@ package nz.co.bigdavenz.ei.command;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
@@ -19,6 +21,9 @@ import nz.co.bigdavenz.ei.player.EIPlayerProperties;
 import nz.co.bigdavenz.ei.skill.EISkill;
 
 public class CommandEI extends CommandBase {
+
+    Minecraft mc = Minecraft.getMinecraft();
+    ScaledResolution sr = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
 
     @Override
     public String getCommandName() {
@@ -70,6 +75,16 @@ public class CommandEI extends CommandBase {
                     EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("EIHUD Command registered", DebugType.HUD));
                     EIHUDHandler.overrideVanillaHUD = !EIHUDHandler.overrideVanillaHUD;
                     break;
+
+                case "sr":
+                    EIDebugHandler.tempDebugToConsole("ScaledWidth: " + sr.getScaledWidth());
+                    EIDebugHandler.tempDebugToConsole("ScaledHeight: " + sr.getScaledHeight());
+                    EIDebugHandler.tempDebugToConsole("ScaleFactor: " + sr.getScaleFactor());
+
+                case "display":
+                    EIDebugHandler.tempDebugToConsole("DisplayWidth: " + mc.displayWidth);
+                    EIDebugHandler.tempDebugToConsole("DisplayHeight: " + mc.displayHeight);
+
 
                 default:
                     throw new WrongUsageException(Commands.COMMAND_EI_USAGE, new Object[0]);

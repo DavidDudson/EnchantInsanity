@@ -3,11 +3,10 @@ package nz.co.bigdavenz.ei.client.hud;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.client.GuiIngameForge;
-import nz.co.bigdavenz.ei.client.render.RenderUtils;
 import nz.co.bigdavenz.ei.core.registry.ImageRegistry;
-import nz.co.bigdavenz.ei.lib.ResourcePaths;
+import nz.co.bigdavenz.ei.core.util.ImageResource;
+import nz.co.bigdavenz.ei.core.util.ScreenLocation;
 import org.lwjgl.opengl.GL11;
 
 public class EIHUDHandler {
@@ -28,15 +27,29 @@ public class EIHUDHandler {
     }
 
     public static void drawHotBar() {
-        ImageRegistry.hotbarBacking.drawIntoHud(sr.getScaledWidth()/2 - ImageRegistry.hotbarBacking.getImageWidth()/2,sr.getScaledHeight()- ImageRegistry.hotbarBacking.getImageHeight());
+        GL11.glPushMatrix();
+        //ImageRegistry.hotbarBacking.drawIntoHudCentre();
+        //ImageRegistry.hungerBar.drawIntoHud(10,10);
+        //ImageRegistry.iconOffence.drawIntoHudCorner(ScreenLocation.TOP_LEFT, 50, 0.0625f);
+        //ImageRegistry.iconOffence.drawIntoHudCorner(ScreenLocation.TOP_CENTRE, 10, 0.0625f);
+        //ImageRegistry.iconOffence.drawIntoHudCorner(ScreenLocation.TOP_RIGHT, 10, 0.125f);
+        //ImageRegistry.iconOffence.drawIntoHudCorner(ScreenLocation.MIDDLE_LEFT, 10, 0.125f);
+        //ImageRegistry.iconOffence.drawIntoHudCorner(ScreenLocation.MIDDLE_CENTRE, 10, 0.125f);
+        //ImageRegistry.iconOffence.drawIntoHudCorner(ScreenLocation.MIDDLE_RIGHT, 10, 0.125f);
+        //ImageRegistry.iconOffence.drawIntoHudCorner(ScreenLocation.BOTTOM_LEFT, 10, 0.125f);
+        ImageRegistry.iconOffence.drawIntoHudCorner(ScreenLocation.BOTTOM_MIDDLE, 10, 0.0625f);
+        //ImageRegistry.iconOffence.drawIntoHudCorner(ScreenLocation.BOTTOM_RIGHT, 50, 0.0625f);
+        GL11.glPopMatrix();
+
+
     }
 
     public static void setupOrtho() {
-        ScaledResolution scaledresolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
+        ScaledResolution sr = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
         GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        GL11.glOrtho(0.0D, scaledresolution.getScaledWidth_double(), scaledresolution.getScaledHeight_double(), 0.0D, 1000.0D, 3000.0D);
+        GL11.glOrtho(0.0D, sr.getScaledWidth_double(), sr.getScaledHeight_double(), 0.0D, 1000.0D, 3000.0D);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         GL11.glLoadIdentity();
         GL11.glTranslatef(0.0F, 0.0F, - 2000.0F);
