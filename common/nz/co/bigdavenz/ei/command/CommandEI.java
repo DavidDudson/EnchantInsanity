@@ -13,10 +13,12 @@ import nz.co.bigdavenz.ei.client.hud.EIHUDHandler;
 import nz.co.bigdavenz.ei.core.handler.ChatMessageHandler;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
 import nz.co.bigdavenz.ei.core.handler.FileHandler;
+import nz.co.bigdavenz.ei.core.util.UsefulFunctions;
 import nz.co.bigdavenz.ei.debug.DebugMessage;
 import nz.co.bigdavenz.ei.debug.DebugType;
 import nz.co.bigdavenz.ei.lib.Commands;
 import nz.co.bigdavenz.ei.lib.Reference;
+import nz.co.bigdavenz.ei.lib.ResourcePaths;
 import nz.co.bigdavenz.ei.player.EIPlayerProperties;
 import nz.co.bigdavenz.ei.skill.EISkill;
 
@@ -80,15 +82,41 @@ public class CommandEI extends CommandBase {
                     EIDebugHandler.tempDebugToConsole("ScaledWidth: " + sr.getScaledWidth());
                     EIDebugHandler.tempDebugToConsole("ScaledHeight: " + sr.getScaledHeight());
                     EIDebugHandler.tempDebugToConsole("ScaleFactor: " + sr.getScaleFactor());
+                    break;
 
                 case "display":
                     EIDebugHandler.tempDebugToConsole("DisplayWidth: " + mc.displayWidth);
                     EIDebugHandler.tempDebugToConsole("DisplayHeight: " + mc.displayHeight);
+                    break;
 
+                case "scale":
+                    EIDebugHandler.tempDebugToConsole("Width Scale: " + UsefulFunctions.getScaledScreenWidth());
+                    EIDebugHandler.tempDebugToConsole("Height Scale: " + UsefulFunctions.getScaledScreenHeight());
+                    break;
+
+                case "crosshairs":
+                    processCrosshairCommand(args);
+                    break;
+
+                case "path":
+                    EIDebugHandler.tempDebugToConsole(ResourcePaths.PATH_FONT.getResourcePath());
+                    break;
 
                 default:
                     throw new WrongUsageException(Commands.COMMAND_EI_USAGE, new Object[0]);
             }
+        }
+    }
+
+    private void processCrosshairCommand(String args[]) {
+        if (args.length > 0) {
+            try{
+            EIHUDHandler.crosshairType = Integer.parseInt(args[0]);
+            } catch(Exception e){
+                throw new WrongUsageException(Commands.COMMAND_CROSSHAIR_USAGE, new Object[0]);
+            }
+        } else{
+            throw new WrongUsageException(Commands.COMMAND_CROSSHAIR_USAGE, new Object[0]);
         }
     }
 

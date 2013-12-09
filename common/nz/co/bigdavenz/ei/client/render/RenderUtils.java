@@ -99,10 +99,22 @@ public class RenderUtils {
 
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV(x + 0, y + height, zLevel, icon.getMinU(), icon.getMaxV());
+        tessellator.addVertexWithUV(x, y + height, zLevel, icon.getMinU(), icon.getMaxV());
         tessellator.addVertexWithUV(x + width, y + height, zLevel, icon.getMaxU(), icon.getMaxV());
-        tessellator.addVertexWithUV(x + width, y + 0, zLevel, icon.getMaxU(), icon.getMinV());
-        tessellator.addVertexWithUV(x + 0, y + 0, zLevel, icon.getMinU(), icon.getMinV());
+        tessellator.addVertexWithUV(x + width, y, zLevel, icon.getMaxU(), icon.getMinV());
+        tessellator.addVertexWithUV(x, y, zLevel, icon.getMinU(), icon.getMinV());
+        tessellator.draw();
+    }
+
+    public static void drawTexturedQuad(int x, int y, ImageResource image) {
+
+        int zLevel = 0;
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawingQuads();
+        tessellator.addVertexWithUV(x, y + image.getImageHeight(), zLevel, 0, 1);
+        tessellator.addVertexWithUV(x + image.getImageWidth(), y + image.getImageHeight(), zLevel, 1, 1);
+        tessellator.addVertexWithUV(x + image.getImageWidth(), y, zLevel, 1, 0);
+        tessellator.addVertexWithUV(x, y, zLevel, 0, 0);
         tessellator.draw();
     }
 

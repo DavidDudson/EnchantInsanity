@@ -1,5 +1,6 @@
 package nz.co.bigdavenz.ei.core.util;
 
+import net.minecraft.client.Minecraft;
 import nz.co.bigdavenz.ei.lib.Reference;
 import nz.co.bigdavenz.ei.logger.VanillaEILogger;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -20,8 +21,12 @@ public class UsefulFunctions {
 
     }
 
-    public static String getBlockTextureLocation(String fileName) {
-        return Reference.BLOCK_TEXTURE_DIR + fileName + ".png";
+    public static float getScaledScreenWidth(){
+        return (Minecraft.getMinecraft().displayWidth/1920.0f);
+    }
+
+    public static float getScaledScreenHeight(){
+        return (Minecraft.getMinecraft().displayHeight/1080.0f);
     }
 
 }

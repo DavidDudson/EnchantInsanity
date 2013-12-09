@@ -6,6 +6,7 @@ package nz.co.bigdavenz.ei;
 import nz.co.bigdavenz.ei.block.EIBlock;
 import nz.co.bigdavenz.ei.client.gui.GUI;
 import nz.co.bigdavenz.ei.client.keybind.KeyBind;
+import nz.co.bigdavenz.ei.client.render.EIFont;
 import nz.co.bigdavenz.ei.config.ConfigurationHandler;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
 import nz.co.bigdavenz.ei.core.handler.EIEventHandler;
@@ -71,6 +72,8 @@ public class Load {
             GUI.init();
 
             KeyBind.init();
+
+            EIFont.init();
         }
     }
 }

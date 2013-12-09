@@ -5,6 +5,8 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.GuiIngameForge;
+import nz.co.bigdavenz.ei.client.hud.EIHUDHandler;
+import nz.co.bigdavenz.ei.client.render.RenderUtils;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -38,7 +40,7 @@ public class ImageResource {
     private static Minecraft mc = Minecraft.getMinecraft();
     private static TextureManager textureManager = mc.getTextureManager();
     private static GuiIngameForge gui = (GuiIngameForge) Minecraft.getMinecraft().ingameGUI;
-    private static ScaledResolution sr = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
+    private ScaledResolution sr = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
 
     private static int defaultBuffer = 50;
 
@@ -46,9 +48,6 @@ public class ImageResource {
 
     private int imageWidth;
     private int imageHeight;
-    private float imageScale;
-    private int scaledImageHeight;
-    private int scaledImageWidth;
 
     public ImageResource(ResourceLocation res, int width, int height) {
         this.resourceLocation = res;
@@ -86,7 +85,7 @@ public class ImageResource {
 
     public void drawIntoHudatLocation(int xPos, int yPos, float scale) {
         textureManager.bindTexture(this.resourceLocation);
-        scaleImage(scale);
+        scaleImage(scale * sr.getScaleFactor());
         gui.drawTexturedModalRect(xPos, yPos, 0, 0, getImageWidth(), getImageHeight());
     }
 
@@ -99,52 +98,52 @@ public class ImageResource {
     }
 
     public void drawIntoHudCorner(ScreenLocation loc, int buffer, float scale) {
-        GL11.glPushMatrix();
         Coordinate coords = getPos(loc, buffer);
         textureManager.bindTexture(this.resourceLocation);
-        scaleImage(scale);
-        gui.drawTexturedModalRect(coords.xPos, coords.yPos, 0, 0, getImageWidth(), getImageHeight());
-        GL11.glPopMatrix();
+        //gui.drawTexturedModalRect(coords.xPos, coords.yPos, 0, 3, getImageWidth(), getImageHeight());
+        RenderUtils.drawTexturedQuad(coords.xPos, coords.yPos, this);
 
     }
 
     private void scaleImage(float scale) {
         GL11.glScalef(scale, scale, 1.0f);
-        this.imageScale = scale;
-        this.scaledImageWidth = (int)(imageWidth * scale);
-        this.scaledImageHeight = (int)(imageHeight * scale);
+    }
+    private void scaleImage(float scaleX, float scaleY) {
+        GL11.glScalef(scaleX, scaleY, 1.0f);
     }
 
     private Coordinate getPos(ScreenLocation loc, int buffer) {
 
+        int displayWidth = 1920;
+        int displayHeight = 1080;
         switch (loc) {
 
             case TOP_LEFT:
-                return new Coordinate(0 + buffer, 0 + buffer);
+                return new Coordinate(buffer, buffer);
 
             case TOP_CENTRE:
-                return new Coordinate((sr.getScaledWidth() - scaledImageWidth) / 2, 0 + buffer);
+                return new Coordinate((displayWidth - imageWidth) / 2,buffer);
 
             case TOP_RIGHT:
-                return new Coordinate(sr.getScaledWidth() - scaledImageWidth - buffer, 0 + buffer);
+                return new Coordinate(displayWidth - imageWidth - buffer, buffer);
 
             case MIDDLE_LEFT:
-                return new Coordinate(0 + buffer, sr.getScaledHeight() - scaledImageHeight / 2);
+                return new Coordinate(buffer, (displayHeight - imageHeight) / 2);
 
             case MIDDLE_CENTRE:
-                return new Coordinate((sr.getScaledWidth() - scaledImageWidth) / 2, (sr.getScaledHeight() - scaledImageHeight) / 2);
+                return new Coordinate((displayWidth - imageWidth) / 2, (displayHeight - imageHeight) / 2);
 
             case MIDDLE_RIGHT:
-                return new Coordinate(sr.getScaledWidth() - scaledImageWidth - buffer, (sr.getScaledHeight() - scaledImageHeight) / 2);
+                return new Coordinate(displayWidth - imageWidth - buffer, (displayHeight - imageHeight) / 2);
 
             case BOTTOM_LEFT:
-                return new Coordinate(0 + buffer, sr.getScaledHeight() - scaledImageHeight - buffer);
+                return new Coordinate(buffer, displayHeight - imageHeight - buffer);
 
             case BOTTOM_MIDDLE:
-                return new Coordinate((sr.getScaledWidth() - scaledImageWidth) / 2, sr.getScaledHeight() - scaledImageHeight - buffer);
+                return new Coordinate((displayWidth - imageWidth) / 2, displayHeight - imageHeight - buffer);
 
             case BOTTOM_RIGHT:
-                return new Coordinate(sr.getScaledWidth() - scaledImageWidth - buffer, sr.getScaledHeight() - scaledImageHeight - buffer);
+                return new Coordinate(displayWidth - imageWidth - buffer, displayHeight - imageHeight - buffer);
 
             default:
                 return new Coordinate(0, 0);

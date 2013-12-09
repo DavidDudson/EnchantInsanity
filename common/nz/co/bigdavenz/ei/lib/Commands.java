@@ -25,5 +25,6 @@ public class Commands {
     public static final String COMMAND_XP_USAGE = "ei xp [ any skill ]";
     public static final String COMMAND_LEADERBOARD_USAGE = "ei leaderboard [ any skill ]";
     public static final String COMMAND_LEVEL_USAGE = "ei level [ any skill ]";
+    public static final String COMMAND_CROSSHAIR_USAGE = "ei crosshair [Crosshair Number]";
 
 }
