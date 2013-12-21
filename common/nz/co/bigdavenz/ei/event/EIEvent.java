@@ -1,5 +1,7 @@
 package nz.co.bigdavenz.ei.event;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -22,6 +24,7 @@ import nz.co.bigdavenz.ei.skill.SkillEventHandler;
 public class EIEvent {
 
     public static void onPlayerLogin(EntityPlayer player) {
+        PlayerLoginEvent.playerLogin(player);
         EIDebugHandler.sendDebugInfoToConsole(new DebugMessage(player.getEntityName() + " logged In!", DebugType.EVENT));
     }
 
@@ -100,6 +103,7 @@ public class EIEvent {
     }
 
     @ForgeSubscribe
+    @SideOnly(Side.CLIENT)
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
 
         if (EIHUDHandler.overrideVanillaHUD) {

@@ -27,4 +27,7 @@ public class Reference {
     public static final String ANIMATION_DIR = "/assests/enchantinsanity/animations";
     public static final String SOUND_DIR = "/assests/enchantinsanity/sounds/";
 
+    public static final boolean activateAllAbilities = true;
+    public static final boolean activateAllEnchantments = true;
+
 }

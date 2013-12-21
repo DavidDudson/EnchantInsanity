@@ -19,6 +19,16 @@ import nz.co.bigdavenz.ei.logger.VanillaEILogger;
  */
 public class FileHandler {
 
+    //potential file use
+//    String fileName = "mySavedData.dat";
+//    File myFile = new File(DimensionManager.getCurrentSaveRootDirectory(), fileName);
+//    FileInputStream fis = new FileInputStream(myFile); //this makes it per-world
+//    DataInputStream instream = new DataInputStream(fis);
+//    nbt = CompressedStreamTools.read(instream);
+//    CompressedStreamTools.write(nbt, myFile);
+//    instream.close();
+//    fis.close();
+
     public static void saveLeaderboard() {
         try {
             FileOutputStream fileOut = new FileOutputStream("Leaderboard.dat");

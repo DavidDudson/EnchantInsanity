@@ -11,6 +11,8 @@ import nz.co.bigdavenz.ei.debug.DebugType;
 import nz.co.bigdavenz.ei.lib.Reference;
 import nz.co.bigdavenz.ei.skill.EISkill;
 
+import java.util.List;
+
 public class EIPlayerProperties implements IExtendedEntityProperties {
 
     EntityPlayerMP player;

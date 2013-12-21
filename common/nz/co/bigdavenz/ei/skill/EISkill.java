@@ -118,9 +118,6 @@ public class EISkill {
         return skillEnabled;
     }
 
-    /**
-     * @param boolean1
-     */
     public void setEnabled(boolean newEnabled) {
         skillEnabled = newEnabled;
     }

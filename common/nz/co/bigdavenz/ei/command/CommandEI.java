@@ -3,6 +3,8 @@ package nz.co.bigdavenz.ei.command;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.command.CommandBase;
@@ -24,9 +26,6 @@ import nz.co.bigdavenz.ei.skill.EISkill;
 
 public class CommandEI extends CommandBase {
 
-    Minecraft mc = Minecraft.getMinecraft();
-    ScaledResolution sr = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
-
     @Override
     public String getCommandName() {
 
@@ -40,6 +39,7 @@ public class CommandEI extends CommandBase {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void processCommand(ICommandSender commandSender, String[] args) {
         if (args.length > 0) {
             String commandName = args[0];
@@ -76,17 +76,6 @@ public class CommandEI extends CommandBase {
                 case "eihud":
                     EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("EIHUD Command registered", DebugType.HUD));
                     EIHUDHandler.overrideVanillaHUD = !EIHUDHandler.overrideVanillaHUD;
-                    break;
-
-                case "sr":
-                    EIDebugHandler.tempDebugToConsole("ScaledWidth: " + sr.getScaledWidth());
-                    EIDebugHandler.tempDebugToConsole("ScaledHeight: " + sr.getScaledHeight());
-                    EIDebugHandler.tempDebugToConsole("ScaleFactor: " + sr.getScaleFactor());
-                    break;
-
-                case "display":
-                    EIDebugHandler.tempDebugToConsole("DisplayWidth: " + mc.displayWidth);
-                    EIDebugHandler.tempDebugToConsole("DisplayHeight: " + mc.displayHeight);
                     break;
 
                 case "scale":

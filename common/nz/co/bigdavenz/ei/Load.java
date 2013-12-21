@@ -31,7 +31,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
  */
 public class Load {
 
-    public static String previousVersion = "saved mod version";
+    public static String previousVersion = UsefulFunctions.getSavedModVersion();
 
     public static void loadEI(FMLPreInitializationEvent event) {
         EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("EI Loading...", DebugType.SERVER));

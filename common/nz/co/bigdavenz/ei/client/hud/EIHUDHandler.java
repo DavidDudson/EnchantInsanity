@@ -1,12 +1,11 @@
 package nz.co.bigdavenz.ei.client.hud;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraftforge.client.GuiIngameForge;
-import nz.co.bigdavenz.ei.client.render.EIFont;
 import nz.co.bigdavenz.ei.client.render.RenderText;
+import nz.co.bigdavenz.ei.client.render.RenderUtils;
 import nz.co.bigdavenz.ei.core.registry.ImageRegistry;
 import nz.co.bigdavenz.ei.core.util.ScreenLocation;
 import nz.co.bigdavenz.ei.core.util.UsefulFunctions;
@@ -26,26 +25,39 @@ public class EIHUDHandler {
 
     public static void drawHUD() {
 
-        GL11.glScalef(UsefulFunctions.getScaledScreenWidth(),UsefulFunctions.getScaledScreenHeight(), 1.0f);
-        //RenderText.eiFontRenderer.drawStringWithShadow("EI HUD is on", 10, 10, 0xFFFFFF);
+        GL11.glScalef(UsefulFunctions.getScaledScreenWidth(), UsefulFunctions.getScaledScreenHeight(), 1.0f);
         drawHotBar();
+        drawArmourBar();
         drawCrosshair();
 
-        RenderText.renderEIText("EI Hud activated", 10,10,Color.orange);
+        RenderText.renderEIText("EI Hud activated", 50, 50, Color.orange);
+        RenderText.renderEIText("", 10, 10, Color.white);
 
 
+    }
+
+    public static void drawArmourBar() {
+
+        int yBuffer = 20;
+
+        ImageRegistry.armourbarBacking.drawIntoHudCorner(ScreenLocation.MIDDLE_RIGHT);
+        ImageRegistry.armourbarBacking.drawIntoHudCorner(ScreenLocation.MIDDLE_RIGHT, 50, 0, (ImageRegistry.armourbarBacking.getImageHeight() + yBuffer) * 1);
+        ImageRegistry.armourbarBacking.drawIntoHudCorner(ScreenLocation.MIDDLE_RIGHT, 50, 0, (ImageRegistry.armourbarBacking.getImageHeight() + yBuffer) * 2);
+        ImageRegistry.armourbarBacking.drawIntoHudCorner(ScreenLocation.MIDDLE_RIGHT, 50, 0, (ImageRegistry.armourbarBacking.getImageHeight() + yBuffer) * 3);
+        ImageRegistry.armourbarBacking.drawIntoHudCorner(ScreenLocation.MIDDLE_RIGHT, 50, 0, (ImageRegistry.armourbarBacking.getImageHeight() + yBuffer) * 4);
+        RenderUtils.renderItemIntoGUI(mc.fontRenderer,mc.thePlayer.inventory.armorInventory[1],1920/2, 1080/2, 1.0f, 1.0f);
 
     }
 
     public static void drawHotBar() {
         ImageRegistry.hotbarBacking.drawIntoHudCorner(ScreenLocation.BOTTOM_MIDDLE);
-        //RenderText.eiFontRenderer.drawStringWithShadow(mc.thePlayer.getHealth() + "/" + mc.thePlayer.getMaxHealth(), 830, 944, 0xFFFFFF);
+        ImageRegistry.hungerBar.drawIntoHudCorner(ScreenLocation.BOTTOM_MIDDLE, 50,ImageRegistry.hungerBar.getImageWidth()/2 + 4, - ImageRegistry.hotbarBacking.getImageHeight() + 104);
 
 
     }
 
-    public static void drawCrosshair(){
-        switch (crosshairType){
+    public static void drawCrosshair() {
+        switch (crosshairType) {
 
             case 1:
                 ImageRegistry.crosshairCircle.drawIntoHudCentre();

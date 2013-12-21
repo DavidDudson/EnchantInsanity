@@ -29,4 +29,8 @@ public class UsefulFunctions {
         return (Minecraft.getMinecraft().displayHeight/1080.0f);
     }
 
+    public static String getSavedModVersion(){
+            return "0.0.1";
+        //TODO tie this into NBT
+    }
 }

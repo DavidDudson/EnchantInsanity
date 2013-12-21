@@ -5,7 +5,6 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.GuiIngameForge;
-import nz.co.bigdavenz.ei.client.hud.EIHUDHandler;
 import nz.co.bigdavenz.ei.client.render.RenderUtils;
 import org.lwjgl.opengl.GL11;
 
@@ -17,21 +16,21 @@ import org.lwjgl.opengl.GL11;
 
 class Coordinate {
 
-    int xPos;
-    int yPos;
+    int x;
+    int y;
 
-    public Coordinate(int xPos, int yPos) {
-        this.xPos = xPos;
-        this.yPos = yPos;
+    public Coordinate(int x, int y) {
+        this.x = x;
+        this.y = y;
 
     }
 
-    public float getXPosAsFloat(){
-        return (float)xPos;
+    public float getXPosAsFloat() {
+        return (float) x;
     }
 
-    public float getYPosAsFloat(){
-        return (float)yPos;
+    public float getYPosAsFloat() {
+        return (float) y;
     }
 }
 
@@ -72,11 +71,7 @@ public class ImageResource {
     }
 
     public void drawIntoHudCentre(int buffer) {
-        drawIntoHudCentre(buffer, 1.0f);
-    }
-
-    public void drawIntoHudCentre(int buffer, float scale) {
-        drawIntoHudCorner(ScreenLocation.MIDDLE_CENTRE, buffer, scale);
+        drawIntoHudCorner(ScreenLocation.MIDDLE_CENTRE, buffer, 0, 0);
     }
 
     public void drawIntoHudatLocation(int xPos, int yPos) {
@@ -90,63 +85,68 @@ public class ImageResource {
     }
 
     public void drawIntoHudCorner(ScreenLocation loc) {
-        drawIntoHudCorner(loc, defaultBuffer);
+        drawIntoHudCorner(loc, defaultBuffer, 0, 0);
     }
 
-    public void drawIntoHudCorner(ScreenLocation loc, int buffer) {
-        drawIntoHudCorner(loc, buffer, 1.0f);
-    }
-
-    public void drawIntoHudCorner(ScreenLocation loc, int buffer, float scale) {
-        Coordinate coords = getPos(loc, buffer);
+    public void drawIntoHudCorner(ScreenLocation loc, int buffer, int xBuffer, int yBuffer) {
+        Coordinate coords = getPos(loc, buffer, xBuffer, yBuffer);
         textureManager.bindTexture(this.resourceLocation);
-        //gui.drawTexturedModalRect(coords.xPos, coords.yPos, 0, 3, getImageWidth(), getImageHeight());
-        RenderUtils.drawTexturedQuad(coords.xPos, coords.yPos, this);
+        RenderUtils.drawTexturedQuad(coords.x, coords.y, this);
 
     }
 
     private void scaleImage(float scale) {
         GL11.glScalef(scale, scale, 1.0f);
     }
+
     private void scaleImage(float scaleX, float scaleY) {
         GL11.glScalef(scaleX, scaleY, 1.0f);
     }
 
-    private Coordinate getPos(ScreenLocation loc, int buffer) {
+    private Coordinate getPos(ScreenLocation loc, int buffer, int offsetX, int offsetY) {
 
         int displayWidth = 1920;
         int displayHeight = 1080;
+
         switch (loc) {
 
             case TOP_LEFT:
-                return new Coordinate(buffer, buffer);
+                return new Coordinate(buffer + offsetX, buffer + offsetY);
 
             case TOP_CENTRE:
-                return new Coordinate((displayWidth - imageWidth) / 2,buffer);
+                return new Coordinate((displayWidth - imageWidth) / 2 + offsetX, buffer + offsetY);
 
             case TOP_RIGHT:
-                return new Coordinate(displayWidth - imageWidth - buffer, buffer);
+                return new Coordinate(displayWidth - imageWidth - buffer + offsetX, buffer + offsetY);
 
             case MIDDLE_LEFT:
-                return new Coordinate(buffer, (displayHeight - imageHeight) / 2);
+                return new Coordinate(buffer + offsetX, (displayHeight - imageHeight) / 2 + offsetY);
 
             case MIDDLE_CENTRE:
-                return new Coordinate((displayWidth - imageWidth) / 2, (displayHeight - imageHeight) / 2);
+                return new Coordinate((displayWidth - imageWidth) / 2 + offsetX, (displayHeight - imageHeight) / 2 + offsetY);
 
             case MIDDLE_RIGHT:
-                return new Coordinate(displayWidth - imageWidth - buffer, (displayHeight - imageHeight) / 2);
+                return new Coordinate(displayWidth - imageWidth - buffer + offsetX, (displayHeight - imageHeight) / 2 + offsetY);
 
             case BOTTOM_LEFT:
-                return new Coordinate(buffer, displayHeight - imageHeight - buffer);
+                return new Coordinate(buffer + offsetX, displayHeight - imageHeight - buffer + offsetY);
 
             case BOTTOM_MIDDLE:
-                return new Coordinate((displayWidth - imageWidth) / 2, displayHeight - imageHeight - buffer);
+                return new Coordinate((displayWidth - imageWidth) / 2 + offsetX, displayHeight - imageHeight - buffer + offsetY);
 
             case BOTTOM_RIGHT:
-                return new Coordinate(displayWidth - imageWidth - buffer, displayHeight - imageHeight - buffer);
+                return new Coordinate(displayWidth - imageWidth - buffer + offsetX, displayHeight - imageHeight - buffer + offsetY);
 
             default:
                 return new Coordinate(0, 0);
         }
+    }
+
+    private Coordinate getPos(ScreenLocation loc, int buffer) {
+        return getPos(loc, buffer, 0, 0);
+    }
+
+    private Coordinate getPos(ScreenLocation loc) {
+        return getPos(loc, defaultBuffer);
     }
 }

@@ -1,7 +1,10 @@
 package nz.co.bigdavenz.ei.core.handler;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.packet.Packet3Chat;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -29,5 +32,9 @@ public class ChatMessageHandler {
 
     public static void sendEIChatToPlayer(EntityPlayer player, String message) {
         player.sendChatToPlayer(createChatComponent(message));
+    }
+
+    public static void broadcastEIMessageToPlayers(String message){
+        MinecraftServer.getServer().getConfigurationManager().sendChatMsg(createChatComponent(message));
     }
 }
