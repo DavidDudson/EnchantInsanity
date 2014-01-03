@@ -17,8 +17,6 @@ public class KeyBind extends KeyHandler {
 
     public static boolean EIKeyDown = false;
 
-    private final EnumSet tickTypes = EnumSet.of(TickType.CLIENT);
-
     public static boolean EIKeyPressed;
 
     public static void init() {

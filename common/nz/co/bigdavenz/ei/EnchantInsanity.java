@@ -1,13 +1,10 @@
 package nz.co.bigdavenz.ei;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.oredict.OreDictionary;
 import nz.co.bigdavenz.ei.core.handler.CommandHandler;
 import nz.co.bigdavenz.ei.core.proxy.CommonProxy;
 import nz.co.bigdavenz.ei.creativetab.CreativeTabEI;
 import nz.co.bigdavenz.ei.lib.Reference;
-import nz.co.bigdavenz.ei.network.PacketHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -16,7 +13,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkMod;
+//import cpw.mods.fml.common.network.NetworkMod;
 
 /**
  * Enchant Insanity
@@ -27,7 +24,7 @@ import cpw.mods.fml.common.network.NetworkMod;
  */
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
-@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
+//@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
 public class EnchantInsanity {
 
     // TODO IScheduladedTickHandler

@@ -19,6 +19,6 @@ public enum DebugType {
     TRACKING,
     LEADERBOARD,
     NBT,
-    HUD
+    GENERAL, HUD
 
 }

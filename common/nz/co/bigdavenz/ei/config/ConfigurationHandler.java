@@ -1,13 +1,9 @@
 package nz.co.bigdavenz.ei.config;
 
-import static net.minecraftforge.common.Configuration.CATEGORY_GENERAL;
-
-import java.io.File;
-
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.Property;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
 import nz.co.bigdavenz.ei.debug.DebugMessage;
 import nz.co.bigdavenz.ei.debug.DebugType;
@@ -38,6 +34,6 @@ public class ConfigurationHandler {
         }
         
         config.save();
-        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Configuration Saved", DebugType.CONFIGURATION));
+        EIDebugHandler.sendDebugInfoToConsole(EIDebugHandler.createDebugMessage("Configuration Saved", DebugType.CONFIGURATION));
     }
 }

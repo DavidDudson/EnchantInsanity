@@ -30,12 +30,13 @@ public class EIPlayerProperties implements IExtendedEntityProperties {
     @Override
     public void saveNBTData(NBTTagCompound compound) {
         EIMiscData.setString("EI Save Version", Reference.MOD_VERSION);
-        compound.setCompoundTag("EISkillData", EISkillData);
-        compound.setCompoundTag("EIEnchantmentData", EIEnchantmentData);
-        compound.setCompoundTag("EIAbilityData", EIAbilityData);
-        compound.setCompoundTag("EIOwnershipData", EIOwnershipData);
-        compound.setCompoundTag("EIMiscData", EIMiscData);
+        compound.setTag("EISkillData", EISkillData);
+        compound.setTag("EIEnchantmentData", EIEnchantmentData);
+        compound.setTag("EIAbilityData", EIAbilityData);
+        compound.setTag("EIOwnershipData", EIOwnershipData);
+        compound.setTag("EIMiscData", EIMiscData);
         EICompound.setTag("EIData", compound);
+        int[] bob = new int[3];
 
     }
 
@@ -70,7 +71,7 @@ public class EIPlayerProperties implements IExtendedEntityProperties {
         } else {
             this.EIMiscData = generateMiscData();
         }
-        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("NBT's Initialised for: " + player.getEntityName() + "... Class: " + player.getClass(), DebugType.NBT));
+        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("NBT's Initialised for: " + player.getDisplayName() + "... Class: " + player.getClass(), DebugType.NBT));
 
     }
 
@@ -101,7 +102,7 @@ public class EIPlayerProperties implements IExtendedEntityProperties {
             String skillName = skill.getSkillName();
             NBTTagCompound skillCompound = new NBTTagCompound(skillName);
             skillCompound.setInteger("XP", 0);
-            skillsCompound.setCompoundTag(skillName, skillCompound);
+            skillsCompound.setTag(skillName, skillCompound);
         }
         return skillsCompound;
     }
@@ -123,7 +124,7 @@ public class EIPlayerProperties implements IExtendedEntityProperties {
         int newXP = currentXP + xpGain;
         NBTTagCompound newCompound = EISkillData.getCompoundTag(skillName);
         newCompound.setInteger("XP", newXP);
-        EISkillData.setCompoundTag(skillName, newCompound);
+        EISkillData.setTag(skillName, newCompound);
         EIDebugHandler.tempDebugToConsole(skillName + " " + xpGain);
     }
 }

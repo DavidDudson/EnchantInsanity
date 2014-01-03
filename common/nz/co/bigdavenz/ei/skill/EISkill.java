@@ -98,7 +98,7 @@ public class EISkill {
     public static void addXpToSkill(String skillName, EntityPlayerMP player, int xpGain) {
         EIPlayerProperties props = (EIPlayerProperties) player.getExtendedProperties(Reference.MOD_NAME);
         props.addSkillXP(skillName, xpGain);
-        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Skill XPGain - Player: " + player.getEntityName() + " Skill: " + skillName + " XP Gain: " + xpGain, DebugType.SKILL));
+        EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Skill XPGain - Player: " + player.getDisplayName() + " Skill: " + skillName + " XP Gain: " + xpGain, DebugType.SKILL));
 
     }
 

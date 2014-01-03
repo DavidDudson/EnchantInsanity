@@ -33,7 +33,7 @@ public class EILivingHurt {
             int amount = (int) event.ammount * 10;
             DamageSource damageSource = event.source;
             EntityPlayer player = (EntityPlayer) event.entityLiving;
-            String username = player.getEntityName();
+            String username = player.getDisplayName();
             String damageType = damageSource.getDamageType();
             EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Player: " + username + " Was hurt by: " + damageType + ". Amount: " + amount, DebugType.TRACKING));
 

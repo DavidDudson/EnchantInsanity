@@ -1,6 +1,8 @@
 package nz.co.bigdavenz.ei.core.util;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import nz.co.bigdavenz.ei.lib.Reference;
 import nz.co.bigdavenz.ei.logger.VanillaEILogger;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -32,5 +34,23 @@ public class UsefulFunctions {
     public static String getSavedModVersion(){
             return "0.0.1";
         //TODO tie this into NBT
+    }
+
+    public static boolean isPlayer(Entity entity) {
+        if(entity instanceof EntityPlayer){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public static EntityPlayer getPlayerFromEntity(Entity entity){
+        if(isPlayer(entity)){
+            return (EntityPlayer)entity;
+        }
+        else{
+            return null;
+        }
     }
 }

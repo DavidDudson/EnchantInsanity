@@ -12,10 +12,12 @@ import nz.co.bigdavenz.ei.logger.VanillaEILogger;
  */
 public class EIDebugHandler {
 
+    public static DebugType defaultType = DebugType.GENERAL;
+
     public static void sendDebugToPlayer(EntityPlayer player, DebugMessage message) {
         if (Reference.debugMode == true) {
             sendDebugInfoToConsole(message);
-            player.addChatMessage("[DEBUG] " + message);
+            ChatMessageHandler.sendEIChatToPlayer(player, "[DEBUG] " + message);
         }
     }
 
@@ -23,7 +25,7 @@ public class EIDebugHandler {
 
         if (Reference.debugMode) {
             if (message.debugType == DebugType.PLAYER) {
-                message.message = " [ " + message.player.username + " ] " + message.message;
+                message.message = " [ " + message.player.getDisplayName() + " ] " + message.message;
                 VanillaEILogger.info("[DEBUG] " + message.message);
             } else {
                 VanillaEILogger.info("[DEBUG] " + message.message);
@@ -31,8 +33,11 @@ public class EIDebugHandler {
         }
     }
 
-    public static void tempDebugToConsole(String Message) {
-        DebugMessage message = new DebugMessage(Message, DebugType.TEMP);
-        sendDebugInfoToConsole(message);
+    public static DebugMessage createDebugMessage(String message){
+        return createDebugMessage(message,defaultType);
+    }
+
+    public static DebugMessage createDebugMessage(String message, DebugType type){
+        return createDebugMessage(message, type);
     }
 }

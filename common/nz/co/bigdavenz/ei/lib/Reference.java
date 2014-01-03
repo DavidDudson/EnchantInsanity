@@ -20,6 +20,9 @@ public class Reference {
     public static final String CLIENT_PROXY_CLASS = "nz.co.bigdavenz.ei.core.proxy.ClientProxy";
     public static final String CHANNEL_NAME = "assets/ei";
 
+    private static final String LANG_RESOURCE_LOCATION = "/mods/ei/lang/";
+    public static String[] localeFiles = {LANG_RESOURCE_LOCATION + "en_US.xml"};
+
     public static boolean debugMode = true;
 
     public static final String BLOCK_TEXTURE_DIR = "/assests/enchantinsanity/textures/blocks/";

@@ -9,7 +9,7 @@ public class Skill {
 
     public static void init() {
 
-        EISkill Care = EISkill.createNewSkill("ToolCare", SkillModifiers.SKILL_TOOLCARE_MODIFIER);
+        EISkill toolcare = EISkill.createNewSkill("ToolCare", SkillModifiers.SKILL_TOOLCARE_MODIFIER);
         EISkill efficiency = EISkill.createNewSkill("Efficiency", SkillModifiers.SKILL_EFFICIENCY_MODIFIER);
         EISkill excavation = EISkill.createNewSkill("Excavation", SkillModifiers.SKILL_EXCAVATION_MODIFIER);
         EISkill mining = EISkill.createNewSkill("Mining", SkillModifiers.SKILL_MINING_MODIFIER);

@@ -12,7 +12,7 @@ public class EIBlock {
     public static void init() {
 
         if (Reference.debugMode) {
-            eiTestBlock = new TestBlock(777, Material.ground);
+            eiTestBlock = new TestBlock(777, Material.field_151566_D);
             // eiAnimatedTestBlock = new AnimatedTestBlock
         }
     }

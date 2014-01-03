@@ -1,40 +1,34 @@
 package nz.co.bigdavenz.ei.core.handler;
 
-import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatMessageComponent;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.*;
+import nz.co.bigdavenz.ei.lib.Reference;
 
 public class ChatMessageHandler {
 
-    private static final ChatMessageComponent EIChatComponent = createEIChatComponent("EI");
+    private static final IChatComponent EIChatComponent = createEIChatComponent(Reference.MOD_ID.toUpperCase());
 
     public static void icommandsenderReply(ICommandSender player, String message) {
-        player.sendChatToPlayer(createChatComponent(message));
+        sendEIChatToPlayer((EntityPlayer)player, message);
     }
 
-    private static ChatMessageComponent createEIChatComponent(String string) {
-        ChatMessageComponent EIComponent = new ChatMessageComponent();
-        EIComponent.addText("[EI] ");
-        EIComponent.setColor(EnumChatFormatting.GOLD);
-        EIComponent.setItalic(true);
-        return EIComponent;
+    private static IChatComponent createEIChatComponent(String string) {
+        ChatComponentText EIComponent = new ChatComponentText(string);
+          return EIComponent;
     }
 
-    public static ChatMessageComponent createChatComponent(String message) {
-        ChatMessageComponent component = new ChatMessageComponent();
-        component.addText(message);
-        return EIChatComponent.appendComponent(component);
+    public static IChatComponent createChatComponent(String message) {
+        ChatComponentText component = new ChatComponentText(message);
+        return EIChatComponent.func_150257_a(component);
     }
 
     public static void sendEIChatToPlayer(EntityPlayer player, String message) {
-        player.sendChatToPlayer(createChatComponent(message));
+        player.func_146105_b(createChatComponent(message));
     }
 
     public static void broadcastEIMessageToPlayers(String message){
-        MinecraftServer.getServer().getConfigurationManager().sendChatMsg(createChatComponent(message));
+        MinecraftServer.getServer().getConfigurationManager().func_148539_a(createChatComponent(message));
     }
 }

@@ -9,8 +9,7 @@ import nz.co.bigdavenz.ei.client.keybind.KeyBind;
 import nz.co.bigdavenz.ei.client.render.EIFont;
 import nz.co.bigdavenz.ei.config.ConfigurationHandler;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
-import nz.co.bigdavenz.ei.core.handler.EIEventHandler;
-import nz.co.bigdavenz.ei.core.handler.TickHandler;
+import nz.co.bigdavenz.ei.core.lang.Localizations;
 import nz.co.bigdavenz.ei.core.registry.EIGameRegistry;
 import nz.co.bigdavenz.ei.core.registry.EILanguageRegistry;
 import nz.co.bigdavenz.ei.core.util.UsefulFunctions;
@@ -68,6 +67,8 @@ public class Load {
         EILanguageRegistry.init();
 
         if (!UsefulFunctions.isServer()) {
+
+            Localizations.loadLanguages();
 
             GUI.init();
 
