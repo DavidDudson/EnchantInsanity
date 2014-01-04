@@ -2,7 +2,6 @@ package nz.co.bigdavenz.ei.event;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -10,19 +9,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.*;
 import nz.co.bigdavenz.ei.client.hud.EIHUDHandler;
-import nz.co.bigdavenz.ei.client.keybind.KeyHandler;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
 import nz.co.bigdavenz.ei.core.util.UsefulFunctions;
 import nz.co.bigdavenz.ei.debug.DebugMessage;
 import nz.co.bigdavenz.ei.debug.DebugType;
 import nz.co.bigdavenz.ei.lib.Reference;
 import nz.co.bigdavenz.ei.player.EIPlayerProperties;
+import org.lwjgl.Sys;
 
 /**
  * @author BigDaveNz
@@ -46,11 +46,6 @@ public class EIEvent {
                 EIHUDHandler.vanillaGUIOpen = true;
             }
         }
-    }
-
-    @SubscribeEvent
-    public static void onKeyboardInput(InputEvent.KeyInputEvent event){
-        KeyHandler.processKeyPress(event);
     }
 
     @SubscribeEvent
@@ -102,8 +97,14 @@ public class EIEvent {
 
     @SubscribeEvent
     public void onLivingHurt(LivingHurtEvent event) {
-        if (UsefulFunctions.isPlayer(event.entity)) {
-            EIDebugHandler.sendDebugInfoToConsole(EIDebugHandler.createDebugMessage(UsefulFunctions.getPlayerFromEntity(event.entity) + " Was Hurt", DebugType.EVENT));
+        if (event.entity instanceof EntityPlayer) {
+            System.out.print(event.source.toString());
+            if(event.source == DamageSource.fall){
+                System.out.print("Falling damage nullified");
+                event.setCanceled(true);
+            }
+            //Debug Handler Crap
+            //EIDebugHandler.sendDebugInfoToConsole(EIDebugHandler.createDebugMessage(UsefulFunctions.getPlayerFromEntity(event.entity) + " Was Hurt", DebugType.EVENT));
         }
     }
 

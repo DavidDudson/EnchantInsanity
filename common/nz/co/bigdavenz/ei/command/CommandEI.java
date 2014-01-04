@@ -78,17 +78,8 @@ public class CommandEI extends CommandBase {
                     EIHUDHandler.overrideVanillaHUD = !EIHUDHandler.overrideVanillaHUD;
                     break;
 
-                case "scale":
-                    EIDebugHandler.tempDebugToConsole("Width Scale: " + UsefulFunctions.getScaledScreenWidth());
-                    EIDebugHandler.tempDebugToConsole("Height Scale: " + UsefulFunctions.getScaledScreenHeight());
-                    break;
-
                 case "crosshairs":
                     processCrosshairCommand(args);
-                    break;
-
-                case "path":
-                    EIDebugHandler.tempDebugToConsole(ResourcePaths.PATH_FONT.getResourcePath());
                     break;
 
                 default:

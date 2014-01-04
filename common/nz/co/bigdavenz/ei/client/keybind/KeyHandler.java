@@ -1,30 +1,66 @@
 package nz.co.bigdavenz.ei.client.keybind;
 
-import cpw.mods.fml.common.gameevent.InputEvent;
-import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by David J. Dudson on 3/01/14.
  */
 public class KeyHandler {
 
-    InputEvent.KeyInputEvent event = null;
+    public static final int EIKEY = Keyboard.KEY_GRAVE;
 
-    public static boolean isKeyStateDown(){
-        if(Keyboard.getEventKeyState()){
-            return
+    public static Map<Integer, Boolean> activeKeys = new HashMap<>();
+
+    public static void init() {
+
+        while (Keyboard.next())
+
+        {
+            if (Keyboard.getEventKeyState()) {
+                processKeyPress(Keyboard.getEventKey());
+            } else {
+                processKeyRelease(Keyboard.getEventKey());
+            }
         }
     }
 
-    public void processKeyPress(InputEvent.KeyInputEvent event) {
+    private static void processKeyRelease(int eventKey) {
+        if (activeKeys.containsKey(eventKey)) {
+            if (activeKeys.get(eventKey)) {
+                activeKeys.replace(eventKey, false);
+            }
+        } else {
+            activeKeys.put(eventKey, false);
+        }
+    }
 
-        this.event = event;
+    public static void processKeyPress(int eventKey) {
 
-        switch (Keyboard.getEventKey()){
+        if (activeKeys.containsKey(eventKey)) {
+            if (! activeKeys.get(eventKey)) {
+                activeKeys.replace(eventKey, true);
+            }
+        } else {
+            activeKeys.put(eventKey, true);
+        }
 
-            case Keyboard.KEY_GRAVE:
 
+        if (activeKeys.get(EIKEY)) {
+
+            switch (eventKey) {
+
+                case Keyboard.KEY_1:
+                    EIKeyPress.processHUDCommand();
+
+                case Keyboard.KEY_2:
+                    if (Minecraft.getMinecraft().currentScreen == null) {
+                        EIKeyPress.processMenuCommand();
+                    }
+            }
         }
     }
 }

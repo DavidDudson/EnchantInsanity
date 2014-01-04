@@ -3,17 +3,20 @@ package nz.co.bigdavenz.ei.creativetab;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemAppleGold;
+import net.minecraft.item.ItemSword;
+import nz.co.bigdavenz.ei.block.EIBlock;
 
-public abstract class CreativeTabEI extends CreativeTabs {
+public class CreativeTabEI extends CreativeTabs {
 
     public CreativeTabEI(int par1, String par2Str) {
 
         super(par1, par2Str);
     }
 
-    @SideOnly(Side.CLIENT)
-    public int getTabIconItemIndex() {
-
-        return 340;
+    @Override
+    public Item getTabIconItem() {
+        return new ItemSword(Item.ToolMaterial.EMERALD);
     }
 }

@@ -24,10 +24,8 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
  */
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
-//@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
 public class EnchantInsanity {
 
-    // TODO IScheduladedTickHandler
     @Instance(Reference.MOD_ID)
     public static EnchantInsanity instance;
     public static CreativeTabs    tabsEI = new CreativeTabEI(CreativeTabs.getNextID(), Reference.MOD_ID);

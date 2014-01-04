@@ -16,12 +16,12 @@ import java.util.List;
 public class EIPlayerProperties implements IExtendedEntityProperties {
 
     EntityPlayerMP player;
-    NBTTagCompound EICompound        = new NBTTagCompound("EIData");
-    NBTTagCompound EISkillData       = new NBTTagCompound("EISkillData");
-    NBTTagCompound EIAbilityData     = new NBTTagCompound("EIAbilityData");
-    NBTTagCompound EIEnchantmentData = new NBTTagCompound("EIEnchantmentData");
-    NBTTagCompound EIOwnershipData   = new NBTTagCompound("EIOwnershipData");
-    NBTTagCompound EIMiscData        = new NBTTagCompound("EIMiscData");
+    NBTTagCompound EICompound        = new NBTTagCompound();
+    NBTTagCompound EISkillData       = new NBTTagCompound();
+    NBTTagCompound EIAbilityData     = new NBTTagCompound();
+    NBTTagCompound EIEnchantmentData = new NBTTagCompound();
+    NBTTagCompound EIOwnershipData   = new NBTTagCompound();
+    NBTTagCompound EIMiscData        = new NBTTagCompound();
 
     public static EIPlayerProperties getPlayerProperties(EntityPlayerMP player) {
         return (EIPlayerProperties) player.getExtendedProperties(Reference.MOD_NAME);
@@ -36,7 +36,6 @@ public class EIPlayerProperties implements IExtendedEntityProperties {
         compound.setTag("EIOwnershipData", EIOwnershipData);
         compound.setTag("EIMiscData", EIMiscData);
         EICompound.setTag("EIData", compound);
-        int[] bob = new int[3];
 
     }
 
@@ -76,31 +75,31 @@ public class EIPlayerProperties implements IExtendedEntityProperties {
     }
 
     private NBTTagCompound generateMiscData() {
-        NBTTagCompound miscCompound = new NBTTagCompound("EIMiscData");
+        NBTTagCompound miscCompound = new NBTTagCompound();
         miscCompound.setString("EI Save Version", Reference.MOD_VERSION);
         return miscCompound;
     }
 
     private NBTTagCompound generateOwnershipData() {
-        NBTTagCompound ownershipCompound = new NBTTagCompound("EIOwnershipData");
+        NBTTagCompound ownershipCompound = new NBTTagCompound();
         return ownershipCompound;
     }
 
     private NBTTagCompound generateAbilityData() {
-        NBTTagCompound abilitiesCompound = new NBTTagCompound("EIAbilityData");
+        NBTTagCompound abilitiesCompound = new NBTTagCompound();
         return abilitiesCompound;
     }
 
     private NBTTagCompound generateEnchantmentData() {
-        NBTTagCompound enchantmentsCompound = new NBTTagCompound("EIEnchantmentData");
+        NBTTagCompound enchantmentsCompound = new NBTTagCompound();
         return enchantmentsCompound;
     }
 
     private NBTTagCompound generateSkillData() {
-        NBTTagCompound skillsCompound = new NBTTagCompound("EISkillData");
+        NBTTagCompound skillsCompound = new NBTTagCompound();
         for (EISkill skill : EISkill.skillList) {
             String skillName = skill.getSkillName();
-            NBTTagCompound skillCompound = new NBTTagCompound(skillName);
+            NBTTagCompound skillCompound = new NBTTagCompound();
             skillCompound.setInteger("XP", 0);
             skillsCompound.setTag(skillName, skillCompound);
         }
@@ -125,6 +124,6 @@ public class EIPlayerProperties implements IExtendedEntityProperties {
         NBTTagCompound newCompound = EISkillData.getCompoundTag(skillName);
         newCompound.setInteger("XP", newXP);
         EISkillData.setTag(skillName, newCompound);
-        EIDebugHandler.tempDebugToConsole(skillName + " " + xpGain);
+        EIDebugHandler.sendDebugInfoToConsole(EIDebugHandler.createDebugMessage(skillName + " " + xpGain));
     }
 }

@@ -5,10 +5,11 @@ package nz.co.bigdavenz.ei;
 
 import nz.co.bigdavenz.ei.block.EIBlock;
 import nz.co.bigdavenz.ei.client.gui.GUI;
-import nz.co.bigdavenz.ei.client.keybind.KeyBind;
+import nz.co.bigdavenz.ei.client.keybind.KeyHandler;
 import nz.co.bigdavenz.ei.client.render.EIFont;
 import nz.co.bigdavenz.ei.config.ConfigurationHandler;
 import nz.co.bigdavenz.ei.core.handler.EIDebugHandler;
+import nz.co.bigdavenz.ei.core.handler.EIEventHandler;
 import nz.co.bigdavenz.ei.core.lang.Localizations;
 import nz.co.bigdavenz.ei.core.registry.EIGameRegistry;
 import nz.co.bigdavenz.ei.core.registry.EILanguageRegistry;
@@ -36,7 +37,7 @@ public class Load {
         EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("EI Loading...", DebugType.SERVER));
         if (!(Reference.MOD_VERSION.equalsIgnoreCase(previousVersion))) {
 
-            VanillaEILogger.info("EI Found that an update is necessary, old save is version: " + Reference.MOD_VERSION);
+            EIDebugHandler.sendDebugInfoToConsole(EIDebugHandler.createDebugMessage("EI Found that an update is necessary, old save is version: " + Reference.MOD_VERSION, DebugType.VERSION));
             Updater.serverUpdate(previousVersion) ;
         }
         load(event);
@@ -45,8 +46,6 @@ public class Load {
     public static void load(FMLPreInitializationEvent event) {
 
         VanillaEILogger.init();
-
-        TickHandler.init();
 
         ModItems.init();
 
@@ -60,8 +59,6 @@ public class Load {
 
         ConfigurationHandler.init(event);
 
-        EIEventHandler.init();
-
         EIGameRegistry.init();
 
         EILanguageRegistry.init();
@@ -72,7 +69,9 @@ public class Load {
 
             GUI.init();
 
-            KeyBind.init();
+            EIEventHandler.init();
+
+            KeyHandler.init();
 
             EIFont.init();
         }

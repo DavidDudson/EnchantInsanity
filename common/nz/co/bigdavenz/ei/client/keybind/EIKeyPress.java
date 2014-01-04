@@ -8,14 +8,12 @@ import nz.co.bigdavenz.ei.debug.DebugType;
 
 public class EIKeyPress {
 
-    public static void processMenuCommand(KeyBinding kb) {
-        KeyBind.EIKeyPressed = false;
+    public static void processMenuCommand() {
         EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("Menu Opened:", DebugType.GUI));
 
     }
 
     public static void processHUDCommand() {
-        KeyBind.EIKeyPressed = false;
         EIHUDHandler.overrideVanillaHUD = !EIHUDHandler.overrideVanillaHUD;
         EIDebugHandler.sendDebugInfoToConsole(new DebugMessage("EI HUD Switch", DebugType.HUD));
 
